@@ -1,4 +1,4 @@
-package pico.erp.purchase.request.detail;
+package pico.erp.purchase.request.item;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

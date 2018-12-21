@@ -1,4 +1,4 @@
-package pico.erp.purchase.request.detail;
+package pico.erp.purchase.request.item;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

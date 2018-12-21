@@ -1,4 +1,4 @@
-package pico.erp.purchase.request.detail;
+package pico.erp.purchase.request.item;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import pico.erp.item.ItemId;
 import pico.erp.item.spec.ItemSpecId;
 import pico.erp.purchase.request.PurchaseRequestId;
-import pico.erp.shared.data.UnitKind;
 
 @Builder
 @AllArgsConstructor

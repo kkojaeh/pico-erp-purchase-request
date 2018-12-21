@@ -11,10 +11,6 @@ import pico.erp.item.ItemId
 import pico.erp.purchase.request.PurchaseRequestId
 import pico.erp.purchase.request.PurchaseRequestRequests
 import pico.erp.purchase.request.PurchaseRequestService
-import pico.erp.purchase.request.detail.PurchaseRequestItemExceptions
-import pico.erp.purchase.request.detail.PurchaseRequestItemId
-import pico.erp.purchase.request.detail.PurchaseRequestItemRequests
-import pico.erp.purchase.request.detail.PurchaseRequestItemService
 import pico.erp.shared.IntegrationConfiguration
 import pico.erp.user.UserId
 import spock.lang.Specification

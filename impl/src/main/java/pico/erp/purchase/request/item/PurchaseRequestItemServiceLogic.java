@@ -1,4 +1,4 @@
-package pico.erp.purchase.request.detail;
+package pico.erp.purchase.request.item;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ import pico.erp.audit.AuditService;
 import pico.erp.purchase.request.PurchaseRequestId;
 import pico.erp.purchase.request.PurchaseRequestProperties;
 import pico.erp.purchase.request.PurchaseRequestService;
-import pico.erp.purchase.request.detail.PurchaseRequestItemRequests.DeleteRequest;
+import pico.erp.purchase.request.item.PurchaseRequestItemRequests.DeleteRequest;
 import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 

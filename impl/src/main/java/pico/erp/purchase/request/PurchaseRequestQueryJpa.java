@@ -6,16 +6,14 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
-import java.time.OffsetDateTime;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import pico.erp.project.ProjectView;
 import pico.erp.purchase.request.PurchaseRequestView.Filter;
-import pico.erp.purchase.request.detail.QPurchaseRequestItemEntity;
+import pico.erp.purchase.request.item.QPurchaseRequestItemEntity;
 import pico.erp.shared.jpa.QueryDslJpaSupport;
 
 public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
