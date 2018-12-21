@@ -2,7 +2,6 @@ package pico.erp.purchase.request;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -28,7 +27,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import pico.erp.company.CompanyId;
-import pico.erp.item.ItemId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
@@ -68,9 +66,9 @@ public class PurchaseRequestEntity implements Serializable {
   OffsetDateTime dueDate;
 
   @AttributeOverrides({
-    @AttributeOverride(name = "value", column = @Column(name = "RECEIVE_COMPANY_ID", length = TypeDefinitions.ID_LENGTH))
+    @AttributeOverride(name = "value", column = @Column(name = "RECEIVER_ID", length = TypeDefinitions.ID_LENGTH))
   })
-  CompanyId receiveCompanyId;
+  CompanyId receiverId;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "RECEIVE_SITE_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))

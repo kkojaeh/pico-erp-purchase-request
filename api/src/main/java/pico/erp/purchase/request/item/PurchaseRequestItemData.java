@@ -27,4 +27,6 @@ public class PurchaseRequestItemData {
 
   String remark;
 
+  PurchaseRequestItemStatusKind status;
+
 }

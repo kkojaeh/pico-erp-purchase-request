@@ -73,7 +73,7 @@ public abstract class PurchaseRequestMapper {
   private StationService stationService;
 
   @Mappings({
-    @Mapping(target = "receiveCompanyId", source = "receiveCompany.id"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
     @Mapping(target = "projectId", source = "project.id"),
@@ -90,7 +90,7 @@ public abstract class PurchaseRequestMapper {
       .code(entity.getCode())
       .project(map(entity.getProjectId()))
       .dueDate(entity.getDueDate())
-      .receiveCompany(map(entity.getReceiveCompanyId()))
+      .receiver(map(entity.getReceiverId()))
       .receiveSite(map(entity.getReceiveSiteId()))
       .receiveStation(map(entity.getReceiveStationId()))
       .remark(entity.getRemark())
@@ -162,7 +162,7 @@ public abstract class PurchaseRequestMapper {
   }
 
   @Mappings({
-    @Mapping(target = "receiveCompanyId", source = "receiveCompany.id"),
+    @Mapping(target = "receiverId", source = "receiver.id"),
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
     @Mapping(target = "projectId", source = "project.id")
@@ -171,7 +171,7 @@ public abstract class PurchaseRequestMapper {
   public abstract PurchaseRequestData map(PurchaseRequest purchaseRequest);
 
   @Mappings({
-    @Mapping(target = "receiveCompany", source = "receiveCompanyId"),
+    @Mapping(target = "receiver", source = "receiverId"),
     @Mapping(target = "receiveSite", source = "receiveSiteId"),
     @Mapping(target = "receiveStation", source = "receiveStationId"),
     @Mapping(target = "project", source = "projectId"),
@@ -182,7 +182,7 @@ public abstract class PurchaseRequestMapper {
     PurchaseRequestRequests.CreateRequest request);
 
   @Mappings({
-    @Mapping(target = "receiveCompany", source = "receiveCompanyId"),
+    @Mapping(target = "receiver", source = "receiverId"),
     @Mapping(target = "receiveSite", source = "receiveSiteId"),
     @Mapping(target = "receiveStation", source = "receiveStationId"),
     @Mapping(target = "project", source = "projectId")

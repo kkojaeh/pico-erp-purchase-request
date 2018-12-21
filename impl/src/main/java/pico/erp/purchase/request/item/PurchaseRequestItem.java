@@ -43,6 +43,8 @@ public class PurchaseRequestItem implements Serializable {
 
   String remark;
 
+  PurchaseRequestItemStatusKind status;
+
 
   public PurchaseRequestItem() {
 
@@ -59,6 +61,7 @@ public class PurchaseRequestItem implements Serializable {
     this.itemSpec = request.getItemSpec();
     this.quantity = request.getQuantity();
     this.remark = request.getRemark();
+    this.status = PurchaseRequestItemStatusKind.DRAFT;
 
     return new PurchaseRequestItemMessages.Create.Response(
       Arrays.asList(new PurchaseRequestItemEvents.CreatedEvent(this.id))

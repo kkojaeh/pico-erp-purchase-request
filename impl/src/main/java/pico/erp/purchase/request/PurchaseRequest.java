@@ -41,7 +41,7 @@ public class PurchaseRequest implements Serializable {
 
   OffsetDateTime dueDate;
 
-  CompanyData receiveCompany;
+  CompanyData receiver;
 
   SiteData receiveSite;
 
@@ -77,7 +77,7 @@ public class PurchaseRequest implements Serializable {
     this.id = request.getId();
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
-    this.receiveCompany = request.getReceiveCompany();
+    this.receiver = request.getReceiver();
     this.receiveSite = request.getReceiveSite();
     this.receiveStation = request.getReceiveStation();
     this.remark = request.getRemark();
@@ -96,7 +96,7 @@ public class PurchaseRequest implements Serializable {
     }
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
-    this.receiveCompany = request.getReceiveCompany();
+    this.receiver = request.getReceiver();
     this.receiveSite = request.getReceiveSite();
     this.receiveStation = request.getReceiveStation();
     this.remark = request.getRemark();
@@ -150,7 +150,7 @@ public class PurchaseRequest implements Serializable {
     this.status = PurchaseRequestStatusKind.COMMITTED;
     this.committedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Commit.Response(
-      Arrays.asList(new PurchaseRequestEvents.CompletedEvent(this.id))
+      Arrays.asList(new PurchaseRequestEvents.CommittedEvent(this.id))
     );
   }
 

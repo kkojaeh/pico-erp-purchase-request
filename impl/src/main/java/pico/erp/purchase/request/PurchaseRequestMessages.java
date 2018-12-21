@@ -36,7 +36,7 @@ public interface PurchaseRequestMessages {
       OffsetDateTime dueDate;
 
       @NotNull
-      CompanyData receiveCompany;
+      CompanyData receiver;
 
       @Valid
       SiteData receiveSite;
@@ -78,7 +78,7 @@ public interface PurchaseRequestMessages {
       OffsetDateTime dueDate;
 
       @NotNull
-      CompanyData receiveCompany;
+      CompanyData receiver;
 
       @Valid
       SiteData receiveSite;

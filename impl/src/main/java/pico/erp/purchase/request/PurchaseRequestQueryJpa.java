@@ -38,7 +38,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
       request.requester,
       request.accepter,
       request.projectId,
-      request.receiveCompanyId,
+      request.receiverId,
       request.receiveSiteId,
       request.receiveStationId,
       request.dueDate,
@@ -60,8 +60,8 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
         .likeIgnoreCase(queryDslJpaSupport.toLikeKeyword("%", filter.getCode(), "%")));
     }
 
-    if (filter.getReceiveCompanyId() != null) {
-      builder.and(request.receiveCompanyId.eq(filter.getReceiveCompanyId()));
+    if (filter.getReceiverId() != null) {
+      builder.and(request.receiverId.eq(filter.getReceiverId()));
     }
 
     if (filter.getRequesterId() != null) {

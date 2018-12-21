@@ -11,6 +11,8 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import lombok.AccessLevel;
@@ -95,5 +97,9 @@ public class PurchaseRequestItemEntity implements Serializable {
 
   @LastModifiedDate
   OffsetDateTime lastModifiedDate;
+
+  @Column(length = TypeDefinitions.ENUM_LENGTH)
+  @Enumerated(EnumType.STRING)
+  PurchaseRequestItemStatusKind status;
 
 }

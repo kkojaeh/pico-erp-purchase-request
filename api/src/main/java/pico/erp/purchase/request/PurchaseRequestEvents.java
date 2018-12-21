@@ -100,6 +100,21 @@ public interface PurchaseRequestEvents {
   @Data
   @AllArgsConstructor
   @NoArgsConstructor
+  class CommittedEvent implements Event {
+
+    public final static String CHANNEL = "event.purchase-request.committed";
+
+    private PurchaseRequestId purchaseRequestId;
+
+    public String channel() {
+      return CHANNEL;
+    }
+
+  }
+
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
   class RejectedEvent implements Event {
 
     public final static String CHANNEL = "event.purchase-request.rejected";

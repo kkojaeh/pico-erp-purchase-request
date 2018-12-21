@@ -1,9 +1,9 @@
-package pico.erp.purchase.request;
+package pico.erp.purchase.request.item;
 
 import java.util.Arrays;
 import pico.erp.shared.data.LocalizedNameable;
 
-public enum PurchaseRequestStatusKind implements LocalizedNameable {
+public enum PurchaseRequestItemStatusKind implements LocalizedNameable {
 
   /**
    * 작성중

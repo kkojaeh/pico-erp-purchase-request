@@ -38,7 +38,7 @@ public interface PurchaseRequestRequests {
 
     @Valid
     @NotNull
-    CompanyId receiveCompanyId;
+    CompanyId receiverId;
 
     @Valid
     SiteId receiveSiteId;
@@ -75,7 +75,7 @@ public interface PurchaseRequestRequests {
 
     @Valid
     @NotNull
-    CompanyId receiveCompanyId;
+    CompanyId receiverId;
 
     @Valid
     SiteId receiveSiteId;

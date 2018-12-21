@@ -27,7 +27,7 @@ public class PurchaseRequestView {
 
   ProjectId projectId;
 
-  CompanyId receiveCompanyId;
+  CompanyId receiverId;
 
   SiteId receiveSiteId;
 
@@ -53,7 +53,7 @@ public class PurchaseRequestView {
 
     String code;
 
-    CompanyId receiveCompanyId;
+    CompanyId receiverId;
 
     UserId requesterId;
 
