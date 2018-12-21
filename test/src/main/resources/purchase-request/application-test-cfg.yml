@@ -2,7 +2,7 @@ data:
   purchase-requests:
   - id: purchase-request-1
     project-id: sample-project1
-    receive-company-id: CUST1
+    receiver-id: CUST1
     requester-id: kjh
     due-date: "2020-12-20T09:44:03+09:00"
     remark: 비고 내용

@@ -38,13 +38,13 @@ class PurchaseRequestServiceSpec extends Specification {
 
   def remark = "요청 비고"
 
-  def receiveCompanyId = CompanyId.from("CUST1")
+  def receiverId = CompanyId.from("CUST1")
 
   def requesterId = UserId.from("kjh")
 
   def accepterId = UserId.from("kjh")
 
-  def receiveCompanyId2 = CompanyId.from("CUST2")
+  def receiverId2 = CompanyId.from("CUST2")
 
   def projectId2 = ProjectId.from("sample-project2")
 
@@ -63,7 +63,7 @@ class PurchaseRequestServiceSpec extends Specification {
       new PurchaseRequestRequests.CreateRequest(
         id: id,
         projectId: projectId,
-        receiveCompanyId: receiveCompanyId,
+        receiverId: receiverId,
         receiveSiteId: receiveSiteId,
         receiveStationId: receiveStationId,
         requesterId: requesterId,
@@ -129,7 +129,7 @@ class PurchaseRequestServiceSpec extends Specification {
       new PurchaseRequestRequests.UpdateRequest(
         id: id,
         projectId: projectId2,
-        receiveCompanyId: receiveCompanyId2,
+        receiverId: receiverId2,
         receiveStationId: receiveStationId2,
         dueDate: dueDate2,
         remark: remark2,
@@ -160,7 +160,7 @@ class PurchaseRequestServiceSpec extends Specification {
 
     then:
     request.id == id
-    request.receiveCompanyId == receiveCompanyId
+    request.receiverId == receiverId
     request.receiveSiteId == receiveSiteId
     request.receiveStationId == receiveStationId
     request.remark == remark
@@ -241,7 +241,7 @@ class PurchaseRequestServiceSpec extends Specification {
 
     then:
     request.projectId == projectId2
-    request.receiveCompanyId == receiveCompanyId2
+    request.receiverId == receiverId2
     request.receiveStationId == receiveStationId2
     request.dueDate == dueDate2
     request.remark == remark2
