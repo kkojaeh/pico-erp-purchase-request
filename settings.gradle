@@ -1,0 +1,4 @@
+rootProject.name = 'pico-erp-purchase-request'
+include 'api'
+include 'impl'
+include 'test'
