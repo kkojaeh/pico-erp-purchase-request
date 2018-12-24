@@ -15,9 +15,9 @@ public class PurchaseRequestData {
 
   PurchaseRequestCode code;
 
-  Auditor requester;
+  Auditor requestedBy;
 
-  Auditor accepter;
+  Auditor acceptedBy;
 
   ProjectId projectId;
 

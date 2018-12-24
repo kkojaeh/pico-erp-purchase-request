@@ -48,7 +48,7 @@ public interface PurchaseRequestMessages {
       String remark;
 
       @NotNull
-      Auditor requester;
+      Auditor requestedBy;
 
       @NotNull
       PurchaseRequestCodeGenerator codeGenerator;
@@ -106,7 +106,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      Auditor accepter;
+      Auditor acceptedBy;
 
     }
 
@@ -125,7 +125,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      Auditor committer;
+      Auditor committedBy;
 
     }
 

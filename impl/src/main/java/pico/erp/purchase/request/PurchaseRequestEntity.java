@@ -88,17 +88,17 @@ public class PurchaseRequestEntity implements Serializable {
 
   @Embedded
   @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "REQUESTER_ID", length = TypeDefinitions.ID_LENGTH)),
-    @AttributeOverride(name = "name", column = @Column(name = "REQUESTER_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
+    @AttributeOverride(name = "id", column = @Column(name = "REQUESTED_BY_ID", length = TypeDefinitions.ID_LENGTH)),
+    @AttributeOverride(name = "name", column = @Column(name = "REQUESTED_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
   })
-  Auditor requester;
+  Auditor requestedBy;
 
   @Embedded
   @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ACCEPTER_ID", length = TypeDefinitions.ID_LENGTH)),
-    @AttributeOverride(name = "name", column = @Column(name = "ACCEPTER_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
+    @AttributeOverride(name = "id", column = @Column(name = "ACCEPTED_BY_ID", length = TypeDefinitions.ID_LENGTH)),
+    @AttributeOverride(name = "name", column = @Column(name = "ACCEPTED_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
   })
-  Auditor accepter;
+  Auditor acceptedBy;
 
   OffsetDateTime committedDate;
 

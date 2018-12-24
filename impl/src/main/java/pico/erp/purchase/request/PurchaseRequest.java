@@ -49,9 +49,9 @@ public class PurchaseRequest implements Serializable {
 
   String remark;
 
-  Auditor requester;
+  Auditor requestedBy;
 
-  Auditor accepter;
+  Auditor acceptedBy;
 
   OffsetDateTime committedDate;
 
@@ -82,7 +82,7 @@ public class PurchaseRequest implements Serializable {
     this.receiveStation = request.getReceiveStation();
     this.remark = request.getRemark();
     this.status = PurchaseRequestStatusKind.DRAFT;
-    this.requester = request.getRequester();
+    this.requestedBy = request.getRequestedBy();
     this.code = request.getCodeGenerator().generate(this);
     return new PurchaseRequestMessages.Create.Response(
       Arrays.asList(new PurchaseRequestEvents.CreatedEvent(this.id))
@@ -111,7 +111,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotAcceptException();
     }
     this.status = PurchaseRequestStatusKind.ACCEPTED;
-    this.accepter = request.getAccepter();
+    this.acceptedBy = request.getAcceptedBy();
     this.acceptedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Accept.Response(
       Arrays.asList(new PurchaseRequestEvents.AcceptedEvent(this.id))
@@ -144,7 +144,7 @@ public class PurchaseRequest implements Serializable {
 
   public PurchaseRequestMessages.Commit.Response apply(
     PurchaseRequestMessages.Commit.Request request) {
-    if (!isCommittable() || !requester.equals(request.getCommitter())) {
+    if (!isCommittable() || !requestedBy.equals(request.getCommittedBy())) {
       throw new PurchaseRequestExceptions.CannotCommitException();
     }
     this.status = PurchaseRequestStatusKind.COMMITTED;

@@ -94,7 +94,8 @@ public abstract class PurchaseRequestMapper {
       .receiveSite(map(entity.getReceiveSiteId()))
       .receiveStation(map(entity.getReceiveStationId()))
       .remark(entity.getRemark())
-      .requester(entity.getRequester())
+      .requestedBy(entity.getRequestedBy())
+      .acceptedBy(entity.getAcceptedBy())
       .committedDate(entity.getCommittedDate())
       .acceptedDate(entity.getAcceptedDate())
       .completedDate(entity.getCompletedDate())
@@ -175,7 +176,7 @@ public abstract class PurchaseRequestMapper {
     @Mapping(target = "receiveSite", source = "receiveSiteId"),
     @Mapping(target = "receiveStation", source = "receiveStationId"),
     @Mapping(target = "project", source = "projectId"),
-    @Mapping(target = "requester", source = "requesterId"),
+    @Mapping(target = "requestedBy", source = "requesterId"),
     @Mapping(target = "codeGenerator", expression = "java(purchaseRequestCodeGenerator)")
   })
   public abstract PurchaseRequestMessages.Create.Request map(
@@ -192,13 +193,13 @@ public abstract class PurchaseRequestMapper {
 
 
   @Mappings({
-    @Mapping(target = "accepter", source = "accepterId")
+    @Mapping(target = "acceptedBy", source = "accepterId")
   })
   public abstract PurchaseRequestMessages.Accept.Request map(
     PurchaseRequestRequests.AcceptRequest request);
 
   @Mappings({
-    @Mapping(target = "committer", source = "committerId")
+    @Mapping(target = "committedBy", source = "committerId")
   })
   public abstract PurchaseRequestMessages.Commit.Request map(
     PurchaseRequestRequests.CommitRequest request);

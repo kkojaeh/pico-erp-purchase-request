@@ -35,8 +35,8 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     val select = Projections.bean(PurchaseRequestView.class,
       request.id,
       request.code,
-      request.requester,
-      request.accepter,
+      request.requestedBy,
+      request.acceptedBy,
       request.projectId,
       request.receiverId,
       request.receiveSiteId,
@@ -65,11 +65,11 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getRequesterId() != null) {
-      builder.and(request.requester.id.eq(filter.getRequesterId().getValue()));
+      builder.and(request.requestedBy.id.eq(filter.getRequesterId().getValue()));
     }
 
     if (filter.getAccepterId() != null) {
-      builder.and(request.accepter.id.eq(filter.getAccepterId().getValue()));
+      builder.and(request.acceptedBy.id.eq(filter.getAccepterId().getValue()));
     }
 
     if (filter.getProjectId() != null) {

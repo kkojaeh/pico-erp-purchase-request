@@ -21,9 +21,9 @@ public class PurchaseRequestView {
 
   PurchaseRequestCode code;
 
-  Auditor requester;
+  Auditor requestedBy;
 
-  Auditor accepter;
+  Auditor acceptedBy;
 
   ProjectId projectId;
 

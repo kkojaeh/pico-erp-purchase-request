@@ -1,8 +1,8 @@
 create table pcr_purchase_request (
 	id binary(16) not null,
+	accepted_by_id varchar(50),
+	accepted_by_name varchar(50),
 	accepted_date datetime,
-	accepter_id varchar(50),
-	accepter_by_name varchar(50),
 	canceled_date datetime,
 	code varchar(20),
 	committed_date datetime,
@@ -21,8 +21,8 @@ create table pcr_purchase_request (
 	rejected_date datetime,
 	rejected_reason varchar(50),
 	remark varchar(50),
-	requester_id varchar(50),
-	requester_by_name varchar(50),
+	requested_by_id varchar(50),
+	requested_by_name varchar(50),
 	status varchar(20),
 	primary key (id)
 ) engine=InnoDB;
