@@ -168,6 +168,17 @@ public class PurchaseRequestItem implements Serializable {
     );
   }
 
+  public PurchaseRequestItemMessages.Plan.Response apply(
+    PurchaseRequestItemMessages.Plan.Request request) {
+    if (!this.isProgressCancelable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.IN_PLANNING;
+    return new PurchaseRequestItemMessages.Plan.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.PlannedEvent(this.id))
+    );
+  }
+
   public boolean isAcceptable() {
     return status.isAcceptable();
   }

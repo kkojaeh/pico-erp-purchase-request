@@ -25,5 +25,4 @@ public interface PurchaseRequestService {
 
   void progress(@Valid @NotNull PurchaseRequestRequests.ProgressRequest request);
 
-
 }

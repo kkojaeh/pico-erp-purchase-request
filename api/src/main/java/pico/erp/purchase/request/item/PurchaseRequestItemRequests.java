@@ -162,4 +162,16 @@ public interface PurchaseRequestItemRequests {
     PurchaseRequestItemId id;
 
   }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class PlanRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
 }

@@ -168,4 +168,14 @@ public class PurchaseRequestItemServiceLogic implements PurchaseRequestItemServi
     eventPublisher.publishEvents(response.getEvents());
   }
 
+  @Override
+  public void plan(PurchaseRequestItemRequests.PlanRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
 }

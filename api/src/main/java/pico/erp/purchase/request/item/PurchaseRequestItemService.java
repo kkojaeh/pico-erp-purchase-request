@@ -34,5 +34,7 @@ public interface PurchaseRequestItemService {
 
   void reject(@Valid @NotNull PurchaseRequestItemRequests.RejectRequest request);
 
+  void plan(@Valid @NotNull PurchaseRequestItemRequests.PlanRequest request);
+
 
 }

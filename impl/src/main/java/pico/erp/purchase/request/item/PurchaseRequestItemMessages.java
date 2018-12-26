@@ -208,4 +208,20 @@ public interface PurchaseRequestItemMessages {
 
   }
 
+  interface Plan {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
 }

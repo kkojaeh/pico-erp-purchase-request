@@ -156,4 +156,19 @@ public interface PurchaseRequestItemEvents {
     }
 
   }
+
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  class PlannedEvent implements Event {
+
+    public final static String CHANNEL = "event.purchase-request-item.planned";
+
+    private PurchaseRequestItemId purchaseRequestItemId;
+
+    public String channel() {
+      return CHANNEL;
+    }
+
+  }
 }
