@@ -82,14 +82,84 @@ public class PurchaseRequestItemServiceLogic implements PurchaseRequestItemServi
   }
 
   @Override
-  public List<PurchaseRequestItemData> getAll(PurchaseRequestId planId) {
-    return planDetailRepository.findAllBy(planId)
+  public void accept(PurchaseRequestItemRequests.AcceptRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void update(PurchaseRequestItemRequests.UpdateRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void cancel(PurchaseRequestItemRequests.CancelRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void cancelProgress(PurchaseRequestItemRequests.CancelProgressRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void commit(PurchaseRequestItemRequests.CommitRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void complete(PurchaseRequestItemRequests.CompleteRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public List<PurchaseRequestItemData> getAll(PurchaseRequestId requestId) {
+    return planDetailRepository.findAllBy(requestId)
       .map(mapper::map)
       .collect(Collectors.toList());
   }
 
   @Override
-  public void update(PurchaseRequestItemRequests.UpdateRequest request) {
+  public void progress(PurchaseRequestItemRequests.ProgressRequest request) {
+    val item = planDetailRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
+    val response = item.apply(mapper.map(request));
+    planDetailRepository.update(item);
+    auditService.commit(item);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void reject(PurchaseRequestItemRequests.RejectRequest request) {
     val item = planDetailRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestItemExceptions.NotFoundException::new);
     val response = item.apply(mapper.map(request));

@@ -70,7 +70,7 @@ public class PurchaseRequestItem implements Serializable {
 
   public PurchaseRequestItemMessages.Update.Response apply(
     PurchaseRequestItemMessages.Update.Request request) {
-    if (!this.request.isUpdatable()) {
+    if (!this.isUpdatable()) {
       throw new PurchaseRequestItemExceptions.CannotUpdateException();
     }
     this.itemSpec = request.getItemSpec();
@@ -83,12 +83,121 @@ public class PurchaseRequestItem implements Serializable {
 
   public PurchaseRequestItemMessages.Delete.Response apply(
     PurchaseRequestItemMessages.Delete.Request request) {
-    if (!this.request.isUpdatable()) {
+    if (!this.isUpdatable()) {
       throw new PurchaseRequestItemExceptions.CannotDeleteException();
     }
     return new PurchaseRequestItemMessages.Delete.Response(
       Arrays.asList(new PurchaseRequestItemEvents.DeletedEvent(this.id))
     );
+  }
+
+  public PurchaseRequestItemMessages.Accept.Response apply(
+    PurchaseRequestItemMessages.Accept.Request request) {
+    if (!this.isAcceptable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.ACCEPTED;
+    return new PurchaseRequestItemMessages.Accept.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.AcceptedEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.Commit.Response apply(
+    PurchaseRequestItemMessages.Commit.Request request) {
+    if (!this.isCommittable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.COMMITTED;
+    return new PurchaseRequestItemMessages.Commit.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.CommittedEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.Complete.Response apply(
+    PurchaseRequestItemMessages.Complete.Request request) {
+    if (!this.isCompletable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.COMPLETED;
+    return new PurchaseRequestItemMessages.Complete.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.CompletedEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.Reject.Response apply(
+    PurchaseRequestItemMessages.Reject.Request request) {
+    if (!this.isRejectable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.REJECTED;
+    return new PurchaseRequestItemMessages.Reject.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.RejectedEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.Cancel.Response apply(
+    PurchaseRequestItemMessages.Cancel.Request request) {
+    if (!this.isCancelable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.CANCELED;
+    return new PurchaseRequestItemMessages.Cancel.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.CanceledEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.Progress.Response apply(
+    PurchaseRequestItemMessages.Progress.Request request) {
+    if (!this.isProgressable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.IN_PROGRESS;
+    return new PurchaseRequestItemMessages.Progress.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.ProgressedEvent(this.id))
+    );
+  }
+
+  public PurchaseRequestItemMessages.CancelProgress.Response apply(
+    PurchaseRequestItemMessages.CancelProgress.Request request) {
+    if (!this.isProgressCancelable()) {
+      throw new PurchaseRequestItemExceptions.CannotDeleteException();
+    }
+    this.status = PurchaseRequestItemStatusKind.ACCEPTED;
+    return new PurchaseRequestItemMessages.CancelProgress.Response(
+      Arrays.asList(new PurchaseRequestItemEvents.ProgressCanceledEvent(this.id))
+    );
+  }
+
+  public boolean isAcceptable() {
+    return status.isAcceptable();
+  }
+
+  public boolean isCancelable() {
+    return status.isCancelable();
+  }
+
+  public boolean isCommittable() {
+    return status.isCommittable();
+  }
+
+  public boolean isCompletable() {
+    return status.isCompletable();
+  }
+
+  public boolean isProgressCancelable() {
+    return status.isProgressCancelable();
+  }
+
+  public boolean isProgressable() {
+    return status.isProgressable();
+  }
+
+  public boolean isRejectable() {
+    return status.isRejectable();
+  }
+
+  public boolean isUpdatable() {
+    return status.isUpdatable();
   }
 
 

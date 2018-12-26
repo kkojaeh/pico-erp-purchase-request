@@ -68,4 +68,8 @@ public enum PurchaseRequestItemStatusKind implements LocalizedNameable {
   public boolean isUpdatable() {
     return this == DRAFT;
   }
+
+  public boolean isProgressCancelable() {
+    return this == IN_PROGRESS;
+  }
 }

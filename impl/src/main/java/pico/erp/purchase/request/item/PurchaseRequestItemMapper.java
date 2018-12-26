@@ -65,6 +65,7 @@ public abstract class PurchaseRequestItemMapper {
       .itemSpec(map(entity.getItemSpecId()))
       .quantity(entity.getQuantity())
       .remark(entity.getRemark())
+      .status(entity.getStatus())
       .build();
   }
 
@@ -115,6 +116,27 @@ public abstract class PurchaseRequestItemMapper {
 
   public abstract PurchaseRequestItemMessages.Delete.Request map(
     PurchaseRequestItemRequests.DeleteRequest request);
+
+  public abstract PurchaseRequestItemMessages.Accept.Request map(
+    PurchaseRequestItemRequests.AcceptRequest request);
+
+  public abstract PurchaseRequestItemMessages.Commit.Request map(
+    PurchaseRequestItemRequests.CommitRequest request);
+
+  public abstract PurchaseRequestItemMessages.Complete.Request map(
+    PurchaseRequestItemRequests.CompleteRequest request);
+
+  public abstract PurchaseRequestItemMessages.Reject.Request map(
+    PurchaseRequestItemRequests.RejectRequest request);
+
+  public abstract PurchaseRequestItemMessages.Cancel.Request map(
+    PurchaseRequestItemRequests.CancelRequest request);
+
+  public abstract PurchaseRequestItemMessages.Progress.Request map(
+    PurchaseRequestItemRequests.ProgressRequest request);
+
+  public abstract PurchaseRequestItemMessages.CancelProgress.Request map(
+    PurchaseRequestItemRequests.CancelProgressRequest request);
 
 
   public abstract void pass(

@@ -166,6 +166,7 @@ class PurchaseRequestItemServiceSpec extends Specification {
     item.requestId == requestId
     item.quantity == 100
     item.remark == "품목 비고"
+    item.status == PurchaseRequestItemStatusKind.DRAFT
 
   }
 

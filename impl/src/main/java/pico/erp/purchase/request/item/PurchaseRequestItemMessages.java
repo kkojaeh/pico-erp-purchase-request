@@ -97,4 +97,115 @@ public interface PurchaseRequestItemMessages {
 
   }
 
+  interface Accept {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+  }
+
+
+  interface Commit {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+  }
+
+  interface Complete {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
+  interface Reject {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
+  interface Cancel {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
+  interface Progress {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
+  interface CancelProgress {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
 }

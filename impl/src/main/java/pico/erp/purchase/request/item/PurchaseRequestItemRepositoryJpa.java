@@ -48,8 +48,8 @@ public class PurchaseRequestItemRepositoryJpa implements PurchaseRequestItemRepo
   }
 
   @Override
-  public Stream<PurchaseRequestItem> findAllBy(PurchaseRequestId planId) {
-    return repository.findAllBy(planId)
+  public Stream<PurchaseRequestItem> findAllBy(PurchaseRequestId requestId) {
+    return repository.findAllBy(requestId)
       .map(mapper::jpa);
   }
 

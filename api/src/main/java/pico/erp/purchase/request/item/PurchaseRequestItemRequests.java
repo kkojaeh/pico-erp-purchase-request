@@ -71,7 +71,91 @@ public interface PurchaseRequestItemRequests {
   @NoArgsConstructor
   @AllArgsConstructor
   @Builder
+  class AcceptRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class CommitRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
   class DeleteRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class CompleteRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class RejectRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class CancelRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class ProgressRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestItemId id;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class CancelProgressRequest {
 
     @Valid
     @NotNull
