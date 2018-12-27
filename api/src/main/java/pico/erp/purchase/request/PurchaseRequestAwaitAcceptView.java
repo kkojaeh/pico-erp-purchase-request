@@ -1,7 +1,6 @@
 package pico.erp.purchase.request;
 
 import java.time.OffsetDateTime;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,15 +14,13 @@ import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
 
 @Data
-public class PurchaseRequestView {
+public class PurchaseRequestAwaitAcceptView {
 
   PurchaseRequestId id;
 
   PurchaseRequestCode code;
 
   Auditor requestedBy;
-
-  Auditor acceptedBy;
 
   ProjectId projectId;
 
@@ -33,19 +30,9 @@ public class PurchaseRequestView {
 
   StationId receiveStationId;
 
-  OffsetDateTime dueDate;
-
   OffsetDateTime committedDate;
 
-  OffsetDateTime completedDate;
-
-  OffsetDateTime acceptedDate;
-
-  OffsetDateTime rejectedDate;
-
-  OffsetDateTime canceledDate;
-
-  PurchaseRequestStatusKind status;
+  OffsetDateTime dueDate;
 
   @Data
   @NoArgsConstructor
@@ -59,13 +46,9 @@ public class PurchaseRequestView {
 
     UserId requesterId;
 
-    UserId accepterId;
-
     ProjectId projectId;
 
     ItemId itemId;
-
-    Set<PurchaseRequestStatusKind> statuses;
 
     OffsetDateTime startDueDate;
 

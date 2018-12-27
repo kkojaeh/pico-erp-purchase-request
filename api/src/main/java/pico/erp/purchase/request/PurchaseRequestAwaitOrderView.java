@@ -1,29 +1,35 @@
 package pico.erp.purchase.request;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
 import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
+import pico.erp.purchase.request.item.PurchaseRequestItemId;
 import pico.erp.shared.data.Auditor;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
 
 @Data
-public class PurchaseRequestView {
+public class PurchaseRequestAwaitOrderView {
 
-  PurchaseRequestId id;
+  PurchaseRequestId requestId;
 
-  PurchaseRequestCode code;
+  PurchaseRequestItemId requestItemId;
+
+  ItemId itemId;
+
+  ItemSpecId itemSpecId;
+
+  BigDecimal quantity;
 
   Auditor requestedBy;
-
-  Auditor acceptedBy;
 
   ProjectId projectId;
 
@@ -33,19 +39,12 @@ public class PurchaseRequestView {
 
   StationId receiveStationId;
 
-  OffsetDateTime dueDate;
-
   OffsetDateTime committedDate;
-
-  OffsetDateTime completedDate;
 
   OffsetDateTime acceptedDate;
 
-  OffsetDateTime rejectedDate;
+  OffsetDateTime dueDate;
 
-  OffsetDateTime canceledDate;
-
-  PurchaseRequestStatusKind status;
 
   @Data
   @NoArgsConstructor
@@ -53,19 +52,13 @@ public class PurchaseRequestView {
   @Builder
   public static class Filter {
 
-    String code;
-
     CompanyId receiverId;
 
     UserId requesterId;
 
-    UserId accepterId;
-
     ProjectId projectId;
 
     ItemId itemId;
-
-    Set<PurchaseRequestStatusKind> statuses;
 
     OffsetDateTime startDueDate;
 
