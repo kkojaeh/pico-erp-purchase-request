@@ -168,7 +168,9 @@ public abstract class PurchaseRequestMapper {
     @Mapping(target = "receiverId", source = "receiver.id"),
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
-    @Mapping(target = "projectId", source = "project.id")
+    @Mapping(target = "projectId", source = "project.id"),
+    @Mapping(target = "requesterId", source = "requester.id"),
+    @Mapping(target = "accepterId", source = "accepter.id")
 
   })
   public abstract PurchaseRequestData map(PurchaseRequest purchaseRequest);
