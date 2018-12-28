@@ -77,6 +77,8 @@ public abstract class PurchaseRequestMapper {
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
     @Mapping(target = "projectId", source = "project.id"),
+    @Mapping(target = "requesterId", source = "requester.id"),
+    @Mapping(target = "accepterId", source = "accepter.id"),
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
     @Mapping(target = "lastModifiedBy", ignore = true),

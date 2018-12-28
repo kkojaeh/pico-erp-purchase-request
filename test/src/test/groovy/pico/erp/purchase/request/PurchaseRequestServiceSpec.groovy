@@ -165,7 +165,7 @@ class PurchaseRequestServiceSpec extends Specification {
     request.receiveStationId == receiveStationId
     request.remark == remark
     request.projectId == projectId
-    request.requestedBy.id == requesterId.value
+    request.requesterId == requesterId
     request.dueDate == dueDate
   }
 
