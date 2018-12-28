@@ -90,6 +90,7 @@ public abstract class PurchaseRequestMapper {
     return PurchaseRequest.builder()
       .id(entity.getId())
       .code(entity.getCode())
+      .name(entity.getName())
       .project(map(entity.getProjectId()))
       .dueDate(entity.getDueDate())
       .receiver(map(entity.getReceiverId()))

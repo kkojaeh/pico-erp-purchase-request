@@ -37,6 +37,8 @@ public class PurchaseRequest implements Serializable {
 
   PurchaseRequestCode code;
 
+  String name;
+
   ProjectData project;
 
   OffsetDateTime dueDate;
@@ -75,6 +77,7 @@ public class PurchaseRequest implements Serializable {
   public PurchaseRequestMessages.Create.Response apply(
     PurchaseRequestMessages.Create.Request request) {
     this.id = request.getId();
+    this.name = request.getName();
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
     this.receiver = request.getReceiver();
@@ -94,6 +97,7 @@ public class PurchaseRequest implements Serializable {
     if (!isUpdatable()) {
       throw new PurchaseRequestExceptions.CannotUpdateException();
     }
+    this.name = request.getName();
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
     this.receiver = request.getReceiver();

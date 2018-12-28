@@ -1,6 +1,7 @@
 data:
   purchase-requests:
   - id: purchase-request-1
+    name: 테스트 구매 요청
     project-id: sample-project1
     receiver-id: CUST1
     requester-id: kjh

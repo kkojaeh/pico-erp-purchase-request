@@ -15,6 +15,8 @@ public class PurchaseRequestData {
 
   PurchaseRequestCode code;
 
+  String name;
+
   UserId requesterId;
 
   UserId accepterId;

@@ -58,10 +58,15 @@ class PurchaseRequestServiceSpec extends Specification {
 
   def receiveStationId2 = StationId.from("S2")
 
+  def name = "테스트 구매요청"
+
+  def name2 = "테스트 구매요청2"
+
   def setup() {
     requestService.create(
       new PurchaseRequestRequests.CreateRequest(
         id: id,
+        name: name,
         projectId: projectId,
         receiverId: receiverId,
         receiveSiteId: receiveSiteId,
@@ -128,6 +133,7 @@ class PurchaseRequestServiceSpec extends Specification {
     requestService.update(
       new PurchaseRequestRequests.UpdateRequest(
         id: id,
+        name: name2,
         projectId: projectId2,
         receiverId: receiverId2,
         receiveStationId: receiveStationId2,
@@ -160,6 +166,7 @@ class PurchaseRequestServiceSpec extends Specification {
 
     then:
     request.id == id
+    request.name == name
     request.receiverId == receiverId
     request.receiveSiteId == receiveSiteId
     request.receiveStationId == receiveStationId
@@ -240,6 +247,7 @@ class PurchaseRequestServiceSpec extends Specification {
     def request = requestService.get(id)
 
     then:
+    request.name == name2
     request.projectId == projectId2
     request.receiverId == receiverId2
     request.receiveStationId == receiveStationId2

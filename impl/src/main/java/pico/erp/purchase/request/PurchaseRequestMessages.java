@@ -27,6 +27,10 @@ public interface PurchaseRequestMessages {
       @NotNull
       PurchaseRequestId id;
 
+      @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+      @NotNull
+      String name;
+
       @Valid
       @NotNull
       ProjectData project;
@@ -68,6 +72,10 @@ public interface PurchaseRequestMessages {
 
     @Data
     class Request {
+
+      @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+      @NotNull
+      String name;
 
       @Valid
       @NotNull

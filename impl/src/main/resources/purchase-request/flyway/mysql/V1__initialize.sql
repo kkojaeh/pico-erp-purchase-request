@@ -13,6 +13,7 @@ create table pcr_purchase_request (
 	last_modified_by_id varchar(50),
 	last_modified_by_name varchar(50),
 	last_modified_date datetime,
+	name varchar(50),
 	project_id binary(16),
 	receive_site_id binary(16),
 	receive_station_id binary(16),

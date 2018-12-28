@@ -59,6 +59,9 @@ public class PurchaseRequestEntity implements Serializable {
   })
   PurchaseRequestCode code;
 
+  @Column(length = TypeDefinitions.ID_LENGTH)
+  String name;
+
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "PROJECT_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))
   })

@@ -28,6 +28,10 @@ public interface PurchaseRequestRequests {
     @NotNull
     PurchaseRequestId id;
 
+    @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+    @NotNull
+    String name;
+
     @Valid
     @NotNull
     ProjectId projectId;
@@ -64,6 +68,10 @@ public interface PurchaseRequestRequests {
     @Valid
     @NotNull
     PurchaseRequestId id;
+
+    @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+    @NotNull
+    String name;
 
     @Valid
     @NotNull
