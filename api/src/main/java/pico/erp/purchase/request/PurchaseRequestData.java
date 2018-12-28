@@ -43,4 +43,18 @@ public class PurchaseRequestData {
 
   String remark;
 
+  boolean cancelable;
+
+  boolean completable;
+
+  boolean acceptable;
+
+  boolean progressable;
+
+  boolean rejectable;
+
+  boolean committable;
+
+  boolean updatable;
+
 }
