@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
 import pico.erp.item.ItemId;
 import pico.erp.project.ProjectId;
-import pico.erp.shared.data.Auditor;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
@@ -21,9 +20,9 @@ public class PurchaseRequestView {
 
   PurchaseRequestCode code;
 
-  Auditor requestedBy;
+  UserId requesterId;
 
-  Auditor acceptedBy;
+  UserId accepterId;
 
   ProjectId projectId;
 

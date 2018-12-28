@@ -30,6 +30,7 @@ import pico.erp.company.CompanyId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
+import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
 
@@ -88,17 +89,15 @@ public class PurchaseRequestEntity implements Serializable {
 
   @Embedded
   @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "REQUESTED_BY_ID", length = TypeDefinitions.ID_LENGTH)),
-    @AttributeOverride(name = "name", column = @Column(name = "REQUESTED_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
+    @AttributeOverride(name = "value", column = @Column(name = "REQUESTER_ID", length = TypeDefinitions.ID_LENGTH)),
   })
-  Auditor requestedBy;
+  UserId requesterId;
 
   @Embedded
   @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ACCEPTED_BY_ID", length = TypeDefinitions.ID_LENGTH)),
-    @AttributeOverride(name = "name", column = @Column(name = "ACCEPTED_BY_NAME", length = TypeDefinitions.NAME_LENGTH))
+    @AttributeOverride(name = "value", column = @Column(name = "ACCEPTER_ID", length = TypeDefinitions.ID_LENGTH)),
   })
-  Auditor acceptedBy;
+  UserId accepterId;
 
   OffsetDateTime committedDate;
 

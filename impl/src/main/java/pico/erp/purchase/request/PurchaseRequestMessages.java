@@ -11,8 +11,8 @@ import lombok.Value;
 import pico.erp.company.CompanyData;
 import pico.erp.project.ProjectData;
 import pico.erp.shared.TypeDefinitions;
-import pico.erp.shared.data.Auditor;
 import pico.erp.shared.event.Event;
+import pico.erp.user.UserData;
 import pico.erp.warehouse.location.site.SiteData;
 import pico.erp.warehouse.location.station.StationData;
 
@@ -48,7 +48,7 @@ public interface PurchaseRequestMessages {
       String remark;
 
       @NotNull
-      Auditor requestedBy;
+      UserData requester;
 
       @NotNull
       PurchaseRequestCodeGenerator codeGenerator;
@@ -106,7 +106,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      Auditor acceptedBy;
+      UserData accepter;
 
     }
 
@@ -125,7 +125,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      Auditor committedBy;
+      UserData committer;
 
     }
 

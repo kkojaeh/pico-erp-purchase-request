@@ -11,7 +11,6 @@ import pico.erp.item.ItemId;
 import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
 import pico.erp.purchase.request.item.PurchaseRequestItemId;
-import pico.erp.shared.data.Auditor;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
@@ -29,7 +28,7 @@ public class PurchaseRequestAwaitOrderView {
 
   BigDecimal quantity;
 
-  Auditor requestedBy;
+  UserId requesterId;
 
   ProjectId projectId;
 

@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
 import pico.erp.company.CompanyData;
 import pico.erp.project.ProjectData;
-import pico.erp.shared.data.Auditor;
+import pico.erp.user.UserData;
 import pico.erp.warehouse.location.site.SiteData;
 import pico.erp.warehouse.location.station.StationData;
 
@@ -49,9 +49,9 @@ public class PurchaseRequest implements Serializable {
 
   String remark;
 
-  Auditor requestedBy;
+  UserData requester;
 
-  Auditor acceptedBy;
+  UserData accepter;
 
   OffsetDateTime committedDate;
 
@@ -82,7 +82,7 @@ public class PurchaseRequest implements Serializable {
     this.receiveStation = request.getReceiveStation();
     this.remark = request.getRemark();
     this.status = PurchaseRequestStatusKind.DRAFT;
-    this.requestedBy = request.getRequestedBy();
+    this.requester = request.getRequester();
     this.code = request.getCodeGenerator().generate(this);
     return new PurchaseRequestMessages.Create.Response(
       Arrays.asList(new PurchaseRequestEvents.CreatedEvent(this.id))
@@ -111,7 +111,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotAcceptException();
     }
     this.status = PurchaseRequestStatusKind.ACCEPTED;
-    this.acceptedBy = request.getAcceptedBy();
+    this.accepter = request.getAccepter();
     this.acceptedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Accept.Response(
       Arrays.asList(new PurchaseRequestEvents.AcceptedEvent(this.id))
@@ -144,7 +144,7 @@ public class PurchaseRequest implements Serializable {
 
   public PurchaseRequestMessages.Commit.Response apply(
     PurchaseRequestMessages.Commit.Request request) {
-    if (!isCommittable() || !requestedBy.equals(request.getCommittedBy())) {
+    if (!isCommittable() || !requester.equals(request.getCommitter())) {
       throw new PurchaseRequestExceptions.CannotCommitException();
     }
     this.status = PurchaseRequestStatusKind.COMMITTED;

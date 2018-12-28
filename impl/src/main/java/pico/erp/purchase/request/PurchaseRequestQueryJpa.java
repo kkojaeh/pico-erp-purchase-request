@@ -44,8 +44,8 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     val select = Projections.bean(PurchaseRequestView.class,
       request.id,
       request.code,
-      request.requestedBy,
-      request.acceptedBy,
+      request.requesterId,
+      request.accepterId,
       request.projectId,
       request.receiverId,
       request.receiveSiteId,
@@ -75,11 +75,11 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getRequesterId() != null) {
-      builder.and(request.requestedBy.id.eq(filter.getRequesterId().getValue()));
+      builder.and(request.requesterId.eq(filter.getRequesterId()));
     }
 
     if (filter.getAccepterId() != null) {
-      builder.and(request.acceptedBy.id.eq(filter.getAccepterId().getValue()));
+      builder.and(request.accepterId.eq(filter.getAccepterId()));
     }
 
     if (filter.getProjectId() != null) {
@@ -121,7 +121,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
       requestItem.itemId,
       requestItem.itemSpecId,
       requestItem.quantity,
-      request.requestedBy,
+      request.requesterId,
       request.projectId,
       request.receiverId,
       request.receiveSiteId,
@@ -144,7 +144,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getRequesterId() != null) {
-      builder.and(request.requestedBy.id.eq(filter.getRequesterId().getValue()));
+      builder.and(request.requesterId.eq(filter.getRequesterId()));
     }
 
     if (filter.getProjectId() != null) {
@@ -175,7 +175,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     val select = Projections.bean(PurchaseRequestAwaitAcceptView.class,
       request.id,
       request.code,
-      request.requestedBy,
+      request.requesterId,
       request.projectId,
       request.receiverId,
       request.receiveSiteId,
@@ -200,7 +200,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getRequesterId() != null) {
-      builder.and(request.requestedBy.id.eq(filter.getRequesterId().getValue()));
+      builder.and(request.requesterId.eq(filter.getRequesterId()));
     }
 
     if (filter.getProjectId() != null) {
