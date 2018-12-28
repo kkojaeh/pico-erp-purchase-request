@@ -20,6 +20,8 @@ public class PurchaseRequestView {
 
   PurchaseRequestCode code;
 
+  String name;
+
   UserId requesterId;
 
   UserId accepterId;

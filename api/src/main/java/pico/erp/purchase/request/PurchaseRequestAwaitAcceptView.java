@@ -19,6 +19,8 @@ public class PurchaseRequestAwaitAcceptView {
 
   PurchaseRequestCode code;
 
+  String name;
+
   UserId requesterId;
 
   ProjectId projectId;
