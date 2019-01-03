@@ -23,6 +23,12 @@ public interface PurchaseRequestItemExceptions {
     private static final long serialVersionUID = 1L;
   }
 
+  @ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "purchase-request-item.cannot.plan.exception")
+  class CannotPlanException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+  }
+
   @ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "purchase-request-item.cannot.create.exception")
   class CannotCreateException extends RuntimeException {
 
