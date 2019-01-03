@@ -190,7 +190,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
 
     val builder = new BooleanBuilder();
 
-    builder.and(requestItem.status.eq(PurchaseRequestItemStatusKind.COMMITTED));
+    builder.and(request.status.eq(PurchaseRequestStatusKind.COMMITTED));
 
     if (!isEmpty(filter.getCode())) {
       builder.and(request.code.value
