@@ -90,6 +90,6 @@ flyway:
   enabled: false
 
 purchase-request:
-  accept-group:
+  accepter-group:
     id: purchase-request-accepter
     name: 구매요청 접수자

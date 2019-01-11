@@ -17,6 +17,8 @@ dependencies {
 
   compile("com.github.kkojaeh.pico-erp-audit:api:${auditVersion}")
 
+  compile("com.github.kkojaeh.pico-erp-company:api:${companyVersion}")
+
   compile("com.github.kkojaeh.pico-erp-project:api:${projectVersion}")
 
   compile("com.github.kkojaeh.pico-erp-warehouse:api:${warehouseVersion}")

@@ -12,6 +12,6 @@ import pico.erp.user.group.GroupData;
 @ConfigurationProperties("purchase-request")
 public class PurchaseRequestPropertiesImpl implements PurchaseRequestProperties {
 
-  GroupData acceptGroup;
+  GroupData accepterGroup;
 
 }

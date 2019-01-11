@@ -21,12 +21,12 @@ public class PurchaseRequestInitializer implements ApplicationInitializer {
 
   @Override
   public void initialize() {
-    val acceptGroup = properties.getAcceptGroup();
-    if (!groupService.exists(acceptGroup.getId())) {
+    val accepterGroup = properties.getAccepterGroup();
+    if (!groupService.exists(accepterGroup.getId())) {
       groupService.create(
         GroupRequests.CreateRequest.builder()
-          .id(acceptGroup.getId())
-          .name(acceptGroup.getName())
+          .id(accepterGroup.getId())
+          .name(accepterGroup.getName())
           .build()
       );
     }

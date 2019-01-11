@@ -4,6 +4,6 @@ import pico.erp.user.group.GroupData;
 
 public interface PurchaseRequestProperties {
 
-  GroupData getAcceptGroup();
+  GroupData getAccepterGroup();
 
 }
