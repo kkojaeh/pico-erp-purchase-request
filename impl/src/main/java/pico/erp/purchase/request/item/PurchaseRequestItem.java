@@ -170,7 +170,7 @@ public class PurchaseRequestItem implements Serializable {
 
   public PurchaseRequestItemMessages.Plan.Response apply(
     PurchaseRequestItemMessages.Plan.Request request) {
-    if (!this.isPlanable()) {
+    if (!this.isPlannable()) {
       throw new PurchaseRequestItemExceptions.CannotPlanException();
     }
     this.status = PurchaseRequestItemStatusKind.IN_PLANNING;
@@ -199,8 +199,8 @@ public class PurchaseRequestItem implements Serializable {
     return status.isProgressCancelable();
   }
 
-  public boolean isPlanable() {
-    return status.isPlanable();
+  public boolean isPlannable() {
+    return status.isPlannable();
   }
 
   public boolean isProgressable() {

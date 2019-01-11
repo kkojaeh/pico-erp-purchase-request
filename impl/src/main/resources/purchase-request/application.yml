@@ -90,6 +90,6 @@ flyway:
   enabled: false
 
 purchase-request:
-  detail-generation-policy:
-    start-time: "09:00"
-    end-time: "18:00"
+  accept-group:
+    id: purchase-request-accepter
+    name: 구매요청 접수자

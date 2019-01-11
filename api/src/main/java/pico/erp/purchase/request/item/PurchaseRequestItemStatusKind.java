@@ -66,7 +66,7 @@ public enum PurchaseRequestItemStatusKind implements LocalizedNameable {
     return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
   }
 
-  public boolean isPlanable() {
+  public boolean isPlannable() {
     return this == ACCEPTED;
   }
 

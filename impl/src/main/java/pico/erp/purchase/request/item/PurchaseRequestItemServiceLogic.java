@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.audit.AuditService;
 import pico.erp.purchase.request.PurchaseRequestId;
-import pico.erp.purchase.request.PurchaseRequestProperties;
-import pico.erp.purchase.request.PurchaseRequestService;
 import pico.erp.purchase.request.item.PurchaseRequestItemRequests.DeleteRequest;
 import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
@@ -31,12 +29,6 @@ public class PurchaseRequestItemServiceLogic implements PurchaseRequestItemServi
 
   @Autowired
   private PurchaseRequestItemMapper mapper;
-
-  @Autowired
-  private PurchaseRequestProperties properties;
-
-  @Autowired
-  private PurchaseRequestService purchaseRequestService;
 
   @Lazy
   @Autowired
