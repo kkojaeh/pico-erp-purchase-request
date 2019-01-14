@@ -91,5 +91,5 @@ flyway:
 
 purchase-request:
   accepter-group:
-    id: purchase-request-accepter
+    id: pr-accepter
     name: 구매요청 접수자
