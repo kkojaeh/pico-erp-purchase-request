@@ -40,6 +40,20 @@ public class PurchaseRequestEventListener {
     }
   }
 
+  @EventListener
+  @JmsListener(destination = LISTENER_NAME + "."
+    + PurchaseRequestItemEvents.CompletedEvent.CHANNEL)
+  public void onRequestItemProgressed(PurchaseRequestItemEvents.ProgressedEvent event) {
+    val requestItem = purchaseRequestItemService.get(event.getPurchaseRequestItemId());
+    val requestId = requestItem.getRequestId();
+
+    purchaseRequestService.progress(
+      PurchaseRequestRequests.ProgressRequest.builder()
+        .id(requestId)
+        .build()
+    );
+  }
+
   // TODO: 생산 계획에 비율 반영
 
 }
