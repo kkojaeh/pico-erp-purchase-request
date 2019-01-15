@@ -261,6 +261,7 @@ class PurchaseRequestServiceSpec extends Specification {
     def request = requestService.get(id)
     then:
     request.status == PurchaseRequestStatusKind.COMMITTED
+    request.committedDate != null
   }
 
   def "제출 - 제출 후 제출"() {

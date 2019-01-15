@@ -33,6 +33,8 @@ public class PurchaseRequestData {
 
   OffsetDateTime dueDate;
 
+  OffsetDateTime committedDate;
+
   OffsetDateTime completedDate;
 
   OffsetDateTime acceptedDate;
