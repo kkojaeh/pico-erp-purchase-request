@@ -42,7 +42,7 @@ public class PurchaseRequestEventListener {
 
   @EventListener
   @JmsListener(destination = LISTENER_NAME + "."
-    + PurchaseRequestItemEvents.CompletedEvent.CHANNEL)
+    + PurchaseRequestItemEvents.ProgressedEvent.CHANNEL)
   public void onRequestItemProgressed(PurchaseRequestItemEvents.ProgressedEvent event) {
     val requestItem = purchaseRequestItemService.get(event.getPurchaseRequestItemId());
     val requestId = requestItem.getRequestId();
