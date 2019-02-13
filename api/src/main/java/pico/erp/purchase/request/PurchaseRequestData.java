@@ -25,6 +25,8 @@ public class PurchaseRequestData {
 
   String rejectedReason;
 
+  CompanyId supplierId;
+
   CompanyId receiverId;
 
   SiteId receiveSiteId;

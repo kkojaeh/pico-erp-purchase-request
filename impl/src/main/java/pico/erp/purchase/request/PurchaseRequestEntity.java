@@ -70,6 +70,11 @@ public class PurchaseRequestEntity implements Serializable {
   OffsetDateTime dueDate;
 
   @AttributeOverrides({
+    @AttributeOverride(name = "value", column = @Column(name = "SUPPLIER_ID", length = TypeDefinitions.ID_LENGTH))
+  })
+  CompanyId supplierId;
+
+  @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "RECEIVER_ID", length = TypeDefinitions.ID_LENGTH))
   })
   CompanyId receiverId;

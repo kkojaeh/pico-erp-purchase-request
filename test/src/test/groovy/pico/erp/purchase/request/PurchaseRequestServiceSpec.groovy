@@ -40,6 +40,8 @@ class PurchaseRequestServiceSpec extends Specification {
 
   def receiverId = CompanyId.from("CUST1")
 
+  def supplierId = CompanyId.from("SUPP1")
+
   def requesterId = UserId.from("kjh")
 
   def accepterId = UserId.from("kjh")
@@ -68,6 +70,7 @@ class PurchaseRequestServiceSpec extends Specification {
         id: id,
         name: name,
         projectId: projectId,
+        supplierId: supplierId,
         receiverId: receiverId,
         receiveSiteId: receiveSiteId,
         receiveStationId: receiveStationId,
@@ -135,6 +138,7 @@ class PurchaseRequestServiceSpec extends Specification {
         id: id,
         name: name2,
         projectId: projectId2,
+        supplierId: supplierId,
         receiverId: receiverId2,
         receiveStationId: receiveStationId2,
         dueDate: dueDate2,
@@ -167,6 +171,7 @@ class PurchaseRequestServiceSpec extends Specification {
     then:
     request.id == id
     request.name == name
+    request.supplierId == supplierId
     request.receiverId == receiverId
     request.receiveSiteId == receiveSiteId
     request.receiveStationId == receiveStationId

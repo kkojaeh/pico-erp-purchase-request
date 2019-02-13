@@ -43,6 +43,8 @@ public class PurchaseRequest implements Serializable {
 
   OffsetDateTime dueDate;
 
+  CompanyData supplier;
+
   CompanyData receiver;
 
   SiteData receiveSite;
@@ -80,6 +82,7 @@ public class PurchaseRequest implements Serializable {
     this.name = request.getName();
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
+    this.supplier = request.getSupplier();
     this.receiver = request.getReceiver();
     this.receiveSite = request.getReceiveSite();
     this.receiveStation = request.getReceiveStation();
@@ -100,6 +103,7 @@ public class PurchaseRequest implements Serializable {
     this.name = request.getName();
     this.project = request.getProject();
     this.dueDate = request.getDueDate();
+    this.supplier = request.getSupplier();
     this.receiver = request.getReceiver();
     this.receiveSite = request.getReceiveSite();
     this.receiveStation = request.getReceiveStation();

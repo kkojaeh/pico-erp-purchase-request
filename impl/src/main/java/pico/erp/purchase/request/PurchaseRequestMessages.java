@@ -39,6 +39,8 @@ public interface PurchaseRequestMessages {
       @NotNull
       OffsetDateTime dueDate;
 
+      CompanyData supplier;
+
       @NotNull
       CompanyData receiver;
 
@@ -84,6 +86,8 @@ public interface PurchaseRequestMessages {
       @Future
       @NotNull
       OffsetDateTime dueDate;
+
+      CompanyData supplier;
 
       @NotNull
       CompanyData receiver;

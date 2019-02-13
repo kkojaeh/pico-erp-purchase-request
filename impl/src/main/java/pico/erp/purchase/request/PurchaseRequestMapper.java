@@ -73,6 +73,7 @@ public abstract class PurchaseRequestMapper {
   private StationService stationService;
 
   @Mappings({
+    @Mapping(target = "supplierId", source = "supplier.id"),
     @Mapping(target = "receiverId", source = "receiver.id"),
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
@@ -93,6 +94,7 @@ public abstract class PurchaseRequestMapper {
       .name(entity.getName())
       .project(map(entity.getProjectId()))
       .dueDate(entity.getDueDate())
+      .supplier(map(entity.getSupplierId()))
       .receiver(map(entity.getReceiverId()))
       .receiveSite(map(entity.getReceiveSiteId()))
       .receiveStation(map(entity.getReceiveStationId()))
@@ -166,6 +168,7 @@ public abstract class PurchaseRequestMapper {
   }
 
   @Mappings({
+    @Mapping(target = "supplierId", source = "supplier.id"),
     @Mapping(target = "receiverId", source = "receiver.id"),
     @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
     @Mapping(target = "receiveStationId", source = "receiveStation.id"),
@@ -177,6 +180,7 @@ public abstract class PurchaseRequestMapper {
   public abstract PurchaseRequestData map(PurchaseRequest purchaseRequest);
 
   @Mappings({
+    @Mapping(target = "supplier", source = "supplierId"),
     @Mapping(target = "receiver", source = "receiverId"),
     @Mapping(target = "receiveSite", source = "receiveSiteId"),
     @Mapping(target = "receiveStation", source = "receiveStationId"),
@@ -188,6 +192,7 @@ public abstract class PurchaseRequestMapper {
     PurchaseRequestRequests.CreateRequest request);
 
   @Mappings({
+    @Mapping(target = "supplier", source = "supplierId"),
     @Mapping(target = "receiver", source = "receiverId"),
     @Mapping(target = "receiveSite", source = "receiveSiteId"),
     @Mapping(target = "receiveStation", source = "receiveStationId"),

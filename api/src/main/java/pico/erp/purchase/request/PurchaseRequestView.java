@@ -28,6 +28,8 @@ public class PurchaseRequestView {
 
   ProjectId projectId;
 
+  CompanyId supplierId;
+
   CompanyId receiverId;
 
   SiteId receiveSiteId;

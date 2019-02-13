@@ -41,6 +41,9 @@ public interface PurchaseRequestRequests {
     OffsetDateTime dueDate;
 
     @Valid
+    CompanyId supplierId;
+
+    @Valid
     @NotNull
     CompanyId receiverId;
 
@@ -56,6 +59,7 @@ public interface PurchaseRequestRequests {
     @Valid
     @NotNull
     UserId requesterId;
+
 
   }
 
@@ -80,6 +84,9 @@ public interface PurchaseRequestRequests {
     @Future
     @NotNull
     OffsetDateTime dueDate;
+
+    @Valid
+    CompanyId supplierId;
 
     @Valid
     @NotNull
