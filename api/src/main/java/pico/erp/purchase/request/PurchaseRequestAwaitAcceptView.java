@@ -25,6 +25,8 @@ public class PurchaseRequestAwaitAcceptView {
 
   ProjectId projectId;
 
+  CompanyId supplierId;
+
   CompanyId receiverId;
 
   SiteId receiveSiteId;

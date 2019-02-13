@@ -32,6 +32,8 @@ public class PurchaseRequestAwaitOrderView {
 
   ProjectId projectId;
 
+  CompanyId supplierId;
+
   CompanyId receiverId;
 
   SiteId receiveSiteId;
