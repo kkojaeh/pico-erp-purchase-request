@@ -11,6 +11,7 @@ import pico.erp.purchase.request.PurchaseRequestRequests.AcceptRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CancelRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CommitRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CompleteRequest;
+import pico.erp.purchase.request.PurchaseRequestRequests.PlanRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.ProgressRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.RejectRequest;
 import pico.erp.shared.Public;
@@ -37,7 +38,37 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
   private AuditService auditService;
 
   @Override
+  public void accept(AcceptRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    auditService.commit(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
   public void cancel(CancelRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    auditService.commit(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void commit(CommitRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    auditService.commit(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void complete(CompleteRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
@@ -72,37 +103,7 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
   }
 
   @Override
-  public void update(PurchaseRequestRequests.UpdateRequest request) {
-    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
-      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
-    val response = purchaseRequest.apply(mapper.map(request));
-    purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
-    eventPublisher.publishEvents(response.getEvents());
-  }
-
-  @Override
-  public void accept(AcceptRequest request) {
-    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
-      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
-    val response = purchaseRequest.apply(mapper.map(request));
-    purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
-    eventPublisher.publishEvents(response.getEvents());
-  }
-
-  @Override
-  public void commit(CommitRequest request) {
-    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
-      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
-    val response = purchaseRequest.apply(mapper.map(request));
-    purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
-    eventPublisher.publishEvents(response.getEvents());
-  }
-
-  @Override
-  public void complete(CompleteRequest request) {
+  public void plan(PlanRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
@@ -123,6 +124,16 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
 
   @Override
   public void progress(ProgressRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    auditService.commit(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void update(PurchaseRequestRequests.UpdateRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));

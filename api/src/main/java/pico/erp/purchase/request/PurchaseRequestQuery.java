@@ -6,17 +6,14 @@ import org.springframework.data.domain.Pageable;
 
 public interface PurchaseRequestQuery {
 
-  Page<PurchaseRequestView> retrieve(@NotNull PurchaseRequestView.Filter filter, @NotNull Pageable pageable);
+  Page<PurchaseRequestView> retrieve(@NotNull PurchaseRequestView.Filter filter,
+    @NotNull Pageable pageable);
 
   Page<PurchaseRequestAwaitOrderView> retrieve(@NotNull PurchaseRequestAwaitOrderView.Filter filter,
     @NotNull Pageable pageable);
 
   Page<PurchaseRequestAwaitAcceptView> retrieve(
     @NotNull PurchaseRequestAwaitAcceptView.Filter filter, @NotNull Pageable pageable);
-
-
-
-
 
 
 }

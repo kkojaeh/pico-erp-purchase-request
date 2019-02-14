@@ -73,4 +73,6 @@ public class PurchaseRequestData {
 
   boolean updatable;
 
+  boolean plannable;
+
 }

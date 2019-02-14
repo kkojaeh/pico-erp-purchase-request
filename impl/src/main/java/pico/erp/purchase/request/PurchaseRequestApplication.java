@@ -77,8 +77,8 @@ public class PurchaseRequestApplication implements ApplicationStarter {
 
   @Bean
   @Public
-  public Role purchaseRequester() {
-    return Roles.PURCHASE_REQUESTER;
+  public Role purchaseRequestAccepter() {
+    return Roles.PURCHASE_REQUEST_ACCEPTER;
   }
 
   @Bean
@@ -89,8 +89,8 @@ public class PurchaseRequestApplication implements ApplicationStarter {
 
   @Bean
   @Public
-  public Role purchaseRequestAccepter() {
-    return Roles.PURCHASE_REQUEST_ACCEPTER;
+  public Role purchaseRequester() {
+    return Roles.PURCHASE_REQUESTER;
   }
 
   @Override

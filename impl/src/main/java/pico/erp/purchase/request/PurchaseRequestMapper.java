@@ -72,6 +72,12 @@ public abstract class PurchaseRequestMapper {
   @Autowired
   private StationService stationService;
 
+  protected Auditor auditor(UserId userId) {
+    return Optional.ofNullable(userId)
+      .map(userService::getAuditor)
+      .orElse(null);
+  }
+
   @Mappings({
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
@@ -110,12 +116,6 @@ public abstract class PurchaseRequestMapper {
   protected UserData map(UserId userId) {
     return Optional.ofNullable(userId)
       .map(userService::get)
-      .orElse(null);
-  }
-
-  protected Auditor auditor(UserId userId) {
-    return Optional.ofNullable(userId)
-      .map(userService::getAuditor)
       .orElse(null);
   }
 
@@ -194,6 +194,9 @@ public abstract class PurchaseRequestMapper {
 
   public abstract PurchaseRequestMessages.Progress.Request map(
     PurchaseRequestRequests.ProgressRequest request);
+
+  public abstract PurchaseRequestMessages.Plan.Request map(
+    PurchaseRequestRequests.PlanRequest request);
 
   public abstract void pass(PurchaseRequestEntity from, @MappingTarget PurchaseRequestEntity to);
 

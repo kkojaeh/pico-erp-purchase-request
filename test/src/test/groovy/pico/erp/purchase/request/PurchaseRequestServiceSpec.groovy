@@ -117,6 +117,14 @@ class PurchaseRequestServiceSpec extends Specification {
     )
   }
 
+  def planRequest() {
+    requestService.plan(
+      new PurchaseRequestRequests.PlanRequest(
+        id: id
+      )
+    )
+  }
+
   def progressRequest() {
     requestService.progress(
       new PurchaseRequestRequests.ProgressRequest(
@@ -233,6 +241,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     updateRequest()
@@ -253,6 +262,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     updateRequest()
     then:
@@ -298,6 +308,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     commitRequest()
     then:
@@ -325,6 +336,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     commitRequest()
@@ -361,6 +373,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     acceptRequest()
     then:
@@ -388,6 +401,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     acceptRequest()
@@ -414,6 +428,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     def request = requestService.get(id)
     then:
@@ -424,6 +439,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     progressRequest()
     def request = requestService.get(id)
@@ -490,6 +506,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     cancelRequest()
     then:
@@ -509,6 +526,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     cancelRequest()
@@ -546,6 +564,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     rejectRequest()
     then:
@@ -573,6 +592,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     rejectRequest()
@@ -609,6 +629,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     def request = requestService.get(id)
@@ -638,6 +659,7 @@ class PurchaseRequestServiceSpec extends Specification {
     when:
     commitRequest()
     acceptRequest()
+    planRequest()
     progressRequest()
     completeRequest()
     completeRequest()

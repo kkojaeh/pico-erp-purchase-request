@@ -202,17 +202,35 @@ public class PurchaseRequest implements Serializable {
     );
   }
 
+  public PurchaseRequestMessages.Plan.Response apply(
+    PurchaseRequestMessages.Plan.Request request) {
+    if (!this.isPlannable()) {
+      throw new PurchaseRequestExceptions.CannotPlanException();
+    }
+    this.status = PurchaseRequestStatusKind.IN_PLANNING;
+    return new PurchaseRequestMessages.Plan.Response(
+      Arrays.asList(new PurchaseRequestEvents.PlannedEvent(this.id))
+    );
+  }
+
+  public boolean isAcceptable() {
+    return status.isAcceptable();
+  }
 
   public boolean isCancelable() {
     return status.isCancelable();
+  }
+
+  public boolean isCommittable() {
+    return status.isCommittable();
   }
 
   public boolean isCompletable() {
     return status.isCompletable();
   }
 
-  public boolean isAcceptable() {
-    return status.isAcceptable();
+  public boolean isPlannable() {
+    return status.isPlannable();
   }
 
   public boolean isProgressable() {
@@ -221,10 +239,6 @@ public class PurchaseRequest implements Serializable {
 
   public boolean isRejectable() {
     return status.isRejectable();
-  }
-
-  public boolean isCommittable() {
-    return status.isCommittable();
   }
 
   public boolean isUpdatable() {

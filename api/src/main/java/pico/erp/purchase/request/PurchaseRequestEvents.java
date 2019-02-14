@@ -14,7 +14,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.created";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -29,7 +29,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.progressed";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -44,7 +44,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.accepted";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -59,7 +59,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.updated";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -74,7 +74,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.canceled";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -89,7 +89,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.completed";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -104,7 +104,7 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.committed";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;
@@ -119,7 +119,22 @@ public interface PurchaseRequestEvents {
 
     public final static String CHANNEL = "event.purchase-request.rejected";
 
-    private PurchaseRequestId purchaseRequestId;
+    private PurchaseRequestId id;
+
+    public String channel() {
+      return CHANNEL;
+    }
+
+  }
+
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  class PlannedEvent implements Event {
+
+    public final static String CHANNEL = "event.purchase-request.planned";
+
+    private PurchaseRequestId id;
 
     public String channel() {
       return CHANNEL;

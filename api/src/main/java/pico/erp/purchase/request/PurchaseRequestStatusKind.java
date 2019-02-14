@@ -21,6 +21,11 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
   ACCEPTED,
 
   /**
+   * 계획중
+   */
+  IN_PLANNING,
+
+  /**
    * 진행중
    */
   IN_PROGRESS,
@@ -46,7 +51,7 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
   }
 
   public boolean isCancelable() {
-    return Arrays.asList(DRAFT, COMMITTED, ACCEPTED).contains(this);
+    return Arrays.asList(DRAFT, COMMITTED, ACCEPTED, IN_PLANNING).contains(this);
   }
 
   public boolean isCommittable() {
@@ -57,8 +62,12 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
     return this == IN_PROGRESS;
   }
 
+  public boolean isPlannable() {
+    return this == ACCEPTED;
+  }
+
   public boolean isProgressable() {
-    return Arrays.asList(ACCEPTED, IN_PROGRESS).contains(this);
+    return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
   }
 
   public boolean isRejectable() {

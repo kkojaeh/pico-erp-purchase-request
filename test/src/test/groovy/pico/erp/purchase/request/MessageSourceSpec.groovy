@@ -38,7 +38,7 @@ class MessageSourceSpec extends Specification {
     println messages
 
     then:
-    messages.size() == 7
+    messages.size() == 8
   }
 
 }
