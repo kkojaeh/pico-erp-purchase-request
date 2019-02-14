@@ -213,12 +213,27 @@ public class PurchaseRequest implements Serializable {
     );
   }
 
+  public PurchaseRequestMessages.CancelProgress.Response apply(
+    PurchaseRequestMessages.CancelProgress.Request request) {
+    if (!this.isProgressCancelable()) {
+      throw new PurchaseRequestExceptions.CannotCancelProgressException();
+    }
+    this.status = PurchaseRequestStatusKind.ACCEPTED;
+    return new PurchaseRequestMessages.CancelProgress.Response(
+      Arrays.asList(new PurchaseRequestEvents.ProgressCanceledEvent(this.id))
+    );
+  }
+
   public boolean isAcceptable() {
     return status.isAcceptable();
   }
 
   public boolean isCancelable() {
     return status.isCancelable();
+  }
+
+  public boolean isProgressCancelable() {
+    return status.isProgressCancelable();
   }
 
   public boolean isCommittable() {

@@ -77,4 +77,8 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
   public boolean isUpdatable() {
     return this == DRAFT;
   }
+
+  public boolean isProgressCancelable() {
+    return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
+  }
 }

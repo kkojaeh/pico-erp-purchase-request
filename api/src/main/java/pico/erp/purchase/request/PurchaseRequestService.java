@@ -27,4 +27,6 @@ public interface PurchaseRequestService {
 
   void reject(@Valid @NotNull PurchaseRequestRequests.RejectRequest request);
 
+  void cancelProgress(@Valid @NotNull PurchaseRequestRequests.CancelProgressRequest request);
+
 }

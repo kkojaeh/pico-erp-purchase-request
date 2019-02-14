@@ -142,5 +142,20 @@ public interface PurchaseRequestEvents {
 
   }
 
+  @Data
+  @AllArgsConstructor
+  @NoArgsConstructor
+  class ProgressCanceledEvent implements Event {
+
+    public final static String CHANNEL = "event.purchase-request.progress-canceled";
+
+    private PurchaseRequestId id;
+
+    public String channel() {
+      return CHANNEL;
+    }
+
+  }
+
 
 }

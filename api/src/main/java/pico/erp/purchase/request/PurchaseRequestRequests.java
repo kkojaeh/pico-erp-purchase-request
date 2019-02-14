@@ -225,4 +225,16 @@ public interface PurchaseRequestRequests {
 
   }
 
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class CancelProgressRequest {
+
+    @Valid
+    @NotNull
+    PurchaseRequestId id;
+
+  }
+
 }

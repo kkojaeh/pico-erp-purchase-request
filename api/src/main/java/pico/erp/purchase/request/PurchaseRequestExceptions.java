@@ -59,6 +59,12 @@ public interface PurchaseRequestExceptions {
     private static final long serialVersionUID = 1L;
   }
 
+  @ResponseStatus(code = HttpStatus.NOT_ACCEPTABLE, reason = "purchase-request.cannot.cancel-progress.exception")
+  class CannotCancelProgressException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+  }
+
 
   @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "purchase-request.not.found.exception")
   class NotFoundException extends RuntimeException {

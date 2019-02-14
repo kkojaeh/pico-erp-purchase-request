@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.audit.AuditService;
 import pico.erp.purchase.request.PurchaseRequestRequests.AcceptRequest;
+import pico.erp.purchase.request.PurchaseRequestRequests.CancelProgressRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CancelRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CommitRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CompleteRequest;
@@ -114,6 +115,16 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
 
   @Override
   public void reject(RejectRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    auditService.commit(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void cancelProgress(CancelProgressRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));

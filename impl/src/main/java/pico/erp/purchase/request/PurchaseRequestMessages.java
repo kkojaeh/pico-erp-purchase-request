@@ -259,5 +259,21 @@ public interface PurchaseRequestMessages {
 
   }
 
+  interface CancelProgress {
+
+    @Data
+    class Request {
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+
+  }
+
 
 }

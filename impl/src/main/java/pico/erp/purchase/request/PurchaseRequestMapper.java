@@ -198,6 +198,9 @@ public abstract class PurchaseRequestMapper {
   public abstract PurchaseRequestMessages.Plan.Request map(
     PurchaseRequestRequests.PlanRequest request);
 
+  public abstract PurchaseRequestMessages.CancelProgress.Request map(
+    PurchaseRequestRequests.CancelProgressRequest request);
+
   public abstract void pass(PurchaseRequestEntity from, @MappingTarget PurchaseRequestEntity to);
 
 

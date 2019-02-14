@@ -75,4 +75,6 @@ public class PurchaseRequestData {
 
   boolean plannable;
 
+  boolean progressCancelable;
+
 }
