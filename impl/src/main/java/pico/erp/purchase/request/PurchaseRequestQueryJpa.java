@@ -4,7 +4,6 @@ import static org.springframework.util.StringUtils.isEmpty;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import pico.erp.purchase.request.PurchaseRequestView.Filter;
-import pico.erp.purchase.request.item.PurchaseRequestItemStatusKind;
-import pico.erp.purchase.request.item.QPurchaseRequestItemEntity;
 import pico.erp.shared.Public;
 import pico.erp.shared.jpa.QueryDslJpaSupport;
 
@@ -29,8 +26,6 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
 
 
   private final QPurchaseRequestEntity request = QPurchaseRequestEntity.purchaseRequestEntity;
-
-  private final QPurchaseRequestItemEntity requestItem = QPurchaseRequestItemEntity.purchaseRequestItemEntity;
 
   @PersistenceContext
   private EntityManager entityManager;
@@ -44,7 +39,10 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     val select = Projections.bean(PurchaseRequestView.class,
       request.id,
       request.code,
-      request.name,
+      request.itemId,
+      request.itemSpecId,
+      request.itemSpecCode,
+      request.quantity,
       request.requesterId,
       request.accepterId,
       request.projectId,
@@ -89,13 +87,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getItemId() != null) {
-      builder.and(
-        request.id.in(
-          JPAExpressions.select(requestItem.requestId)
-            .from(requestItem)
-            .where(requestItem.itemId.eq(filter.getItemId()))
-        )
-      );
+      builder.and(request.itemId.eq(filter.getItemId()));
     }
 
     if (filter.getStatuses() != null && !filter.getStatuses().isEmpty()) {
@@ -118,11 +110,11 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     Pageable pageable) {
     val query = new JPAQuery<PurchaseRequestAwaitOrderView>(entityManager);
     val select = Projections.bean(PurchaseRequestAwaitOrderView.class,
-      requestItem.requestId,
-      requestItem.id.as("requestItemId"),
-      requestItem.itemId,
-      requestItem.itemSpecId,
-      requestItem.quantity,
+      request.id,
+      request.itemId,
+      request.itemSpecId,
+      request.itemSpecCode,
+      request.quantity,
       request.requesterId,
       request.projectId,
       request.supplierId,
@@ -136,11 +128,10 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     );
     query.select(select);
     query.from(request);
-    query.join(requestItem).on(request.id.eq(requestItem.requestId));
 
     val builder = new BooleanBuilder();
 
-    builder.and(requestItem.status.eq(PurchaseRequestItemStatusKind.ACCEPTED));
+    builder.and(request.status.eq(PurchaseRequestStatusKind.ACCEPTED));
 
     if (filter.getReceiverId() != null) {
       builder.and(request.receiverId.eq(filter.getReceiverId()));
@@ -156,7 +147,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
 
     if (filter.getItemId() != null) {
       builder.and(
-        requestItem.itemId.eq(filter.getItemId())
+        request.itemId.eq(filter.getItemId())
       );
     }
 
@@ -178,7 +169,10 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     val select = Projections.bean(PurchaseRequestAwaitAcceptView.class,
       request.id,
       request.code,
-      request.name,
+      request.itemId,
+      request.itemSpecId,
+      request.itemSpecCode,
+      request.quantity,
       request.requesterId,
       request.projectId,
       request.supplierId,
@@ -213,13 +207,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
     }
 
     if (filter.getItemId() != null) {
-      builder.and(
-        request.id.in(
-          JPAExpressions.select(requestItem.requestId)
-            .from(requestItem)
-            .where(requestItem.itemId.eq(filter.getItemId()))
-        )
-      );
+      builder.and(request.itemId.eq(filter.getItemId()));
     }
 
     if (filter.getStartDueDate() != null) {

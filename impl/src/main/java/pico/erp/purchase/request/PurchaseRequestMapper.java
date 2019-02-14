@@ -73,13 +73,6 @@ public abstract class PurchaseRequestMapper {
   private StationService stationService;
 
   @Mappings({
-    @Mapping(target = "supplierId", source = "supplier.id"),
-    @Mapping(target = "receiverId", source = "receiver.id"),
-    @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
-    @Mapping(target = "receiveStationId", source = "receiveStation.id"),
-    @Mapping(target = "projectId", source = "project.id"),
-    @Mapping(target = "requesterId", source = "requester.id"),
-    @Mapping(target = "accepterId", source = "accepter.id"),
     @Mapping(target = "createdBy", ignore = true),
     @Mapping(target = "createdDate", ignore = true),
     @Mapping(target = "lastModifiedBy", ignore = true),
@@ -91,16 +84,19 @@ public abstract class PurchaseRequestMapper {
     return PurchaseRequest.builder()
       .id(entity.getId())
       .code(entity.getCode())
-      .name(entity.getName())
-      .project(map(entity.getProjectId()))
+      .itemId(entity.getItemId())
+      .itemSpecId(entity.getItemSpecId())
+      .itemSpecCode(entity.getItemSpecCode())
+      .quantity(entity.getQuantity())
+      .projectId(entity.getProjectId())
       .dueDate(entity.getDueDate())
-      .supplier(map(entity.getSupplierId()))
-      .receiver(map(entity.getReceiverId()))
-      .receiveSite(map(entity.getReceiveSiteId()))
-      .receiveStation(map(entity.getReceiveStationId()))
+      .supplierId(entity.getSupplierId())
+      .receiverId(entity.getReceiverId())
+      .receiveSiteId(entity.getReceiveSiteId())
+      .receiveStationId(entity.getReceiveStationId())
       .remark(entity.getRemark())
-      .requester(map(entity.getRequesterId()))
-      .accepter(map(entity.getAccepterId()))
+      .requesterId(entity.getRequesterId())
+      .accepterId(entity.getAccepterId())
       .committedDate(entity.getCommittedDate())
       .acceptedDate(entity.getAcceptedDate())
       .completedDate(entity.getCompletedDate())
@@ -168,49 +164,22 @@ public abstract class PurchaseRequestMapper {
   }
 
   @Mappings({
-    @Mapping(target = "supplierId", source = "supplier.id"),
-    @Mapping(target = "receiverId", source = "receiver.id"),
-    @Mapping(target = "receiveSiteId", source = "receiveSite.id"),
-    @Mapping(target = "receiveStationId", source = "receiveStation.id"),
-    @Mapping(target = "projectId", source = "project.id"),
-    @Mapping(target = "requesterId", source = "requester.id"),
-    @Mapping(target = "accepterId", source = "accepter.id")
-
   })
   public abstract PurchaseRequestData map(PurchaseRequest purchaseRequest);
 
   @Mappings({
-    @Mapping(target = "supplier", source = "supplierId"),
-    @Mapping(target = "receiver", source = "receiverId"),
-    @Mapping(target = "receiveSite", source = "receiveSiteId"),
-    @Mapping(target = "receiveStation", source = "receiveStationId"),
-    @Mapping(target = "project", source = "projectId"),
-    @Mapping(target = "requester", source = "requesterId"),
     @Mapping(target = "codeGenerator", expression = "java(purchaseRequestCodeGenerator)")
   })
   public abstract PurchaseRequestMessages.Create.Request map(
     PurchaseRequestRequests.CreateRequest request);
 
-  @Mappings({
-    @Mapping(target = "supplier", source = "supplierId"),
-    @Mapping(target = "receiver", source = "receiverId"),
-    @Mapping(target = "receiveSite", source = "receiveSiteId"),
-    @Mapping(target = "receiveStation", source = "receiveStationId"),
-    @Mapping(target = "project", source = "projectId")
-  })
   public abstract PurchaseRequestMessages.Update.Request map(
     PurchaseRequestRequests.UpdateRequest request);
 
 
-  @Mappings({
-    @Mapping(target = "accepter", source = "accepterId")
-  })
   public abstract PurchaseRequestMessages.Accept.Request map(
     PurchaseRequestRequests.AcceptRequest request);
 
-  @Mappings({
-    @Mapping(target = "committer", source = "committerId")
-  })
   public abstract PurchaseRequestMessages.Commit.Request map(
     PurchaseRequestRequests.CommitRequest request);
 

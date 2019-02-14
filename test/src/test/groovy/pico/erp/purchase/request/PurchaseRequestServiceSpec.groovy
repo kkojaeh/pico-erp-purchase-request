@@ -8,6 +8,8 @@ import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import pico.erp.company.CompanyId
+import pico.erp.item.ItemId
+import pico.erp.item.spec.ItemSpecCode
 import pico.erp.project.ProjectId
 import pico.erp.shared.IntegrationConfiguration
 import pico.erp.user.UserId
@@ -60,6 +62,12 @@ class PurchaseRequestServiceSpec extends Specification {
 
   def receiveStationId2 = StationId.from("S2")
 
+  def itemId = ItemId.from("item-1")
+
+  def itemSpecCode = ItemSpecCode.NOT_APPLICABLE
+
+  def quantity = 100
+
   def name = "테스트 구매요청"
 
   def name2 = "테스트 구매요청2"
@@ -68,7 +76,9 @@ class PurchaseRequestServiceSpec extends Specification {
     requestService.create(
       new PurchaseRequestRequests.CreateRequest(
         id: id,
-        name: name,
+        itemId: itemId,
+        itemSpecCode: itemSpecCode,
+        quantity: quantity,
         projectId: projectId,
         supplierId: supplierId,
         receiverId: receiverId,
@@ -136,7 +146,9 @@ class PurchaseRequestServiceSpec extends Specification {
     requestService.update(
       new PurchaseRequestRequests.UpdateRequest(
         id: id,
-        name: name2,
+        itemId: itemId,
+        itemSpecCode: itemSpecCode,
+        quantity: quantity,
         projectId: projectId2,
         supplierId: supplierId,
         receiverId: receiverId2,
@@ -170,7 +182,9 @@ class PurchaseRequestServiceSpec extends Specification {
 
     then:
     request.id == id
-    request.name == name
+    request.itemId == itemId
+    request.itemSpecCode == itemSpecCode
+    request.quantity == quantity
     request.supplierId == supplierId
     request.receiverId == receiverId
     request.receiveSiteId == receiveSiteId
@@ -252,7 +266,10 @@ class PurchaseRequestServiceSpec extends Specification {
     def request = requestService.get(id)
 
     then:
-    request.name == name2
+    request.id == id
+    request.itemId == itemId
+    request.itemSpecCode == itemSpecCode
+    request.quantity == quantity
     request.projectId == projectId2
     request.receiverId == receiverId2
     request.receiveStationId == receiveStationId2

@@ -1,6 +1,7 @@
 package pico.erp.purchase.request;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import javax.persistence.Id;
@@ -12,11 +13,14 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import pico.erp.audit.annotation.Audit;
-import pico.erp.company.CompanyData;
-import pico.erp.project.ProjectData;
-import pico.erp.user.UserData;
-import pico.erp.warehouse.location.site.SiteData;
-import pico.erp.warehouse.location.station.StationData;
+import pico.erp.company.CompanyId;
+import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecCode;
+import pico.erp.item.spec.ItemSpecId;
+import pico.erp.project.ProjectId;
+import pico.erp.user.UserId;
+import pico.erp.warehouse.location.site.SiteId;
+import pico.erp.warehouse.location.station.StationId;
 
 /**
  * 주문 접수
@@ -37,25 +41,31 @@ public class PurchaseRequest implements Serializable {
 
   PurchaseRequestCode code;
 
-  String name;
+  ItemId itemId;
 
-  ProjectData project;
+  ItemSpecId itemSpecId;
+
+  ItemSpecCode itemSpecCode;
+
+  BigDecimal quantity;
+
+  ProjectId projectId;
 
   OffsetDateTime dueDate;
 
-  CompanyData supplier;
+  CompanyId supplierId;
 
-  CompanyData receiver;
+  CompanyId receiverId;
 
-  SiteData receiveSite;
+  SiteId receiveSiteId;
 
-  StationData receiveStation;
+  StationId receiveStationId;
 
   String remark;
 
-  UserData requester;
+  UserId requesterId;
 
-  UserData accepter;
+  UserId accepterId;
 
   OffsetDateTime committedDate;
 
@@ -79,16 +89,19 @@ public class PurchaseRequest implements Serializable {
   public PurchaseRequestMessages.Create.Response apply(
     PurchaseRequestMessages.Create.Request request) {
     this.id = request.getId();
-    this.name = request.getName();
-    this.project = request.getProject();
+    this.itemId = request.getItemId();
+    this.itemSpecId = request.getItemSpecId();
+    this.itemSpecCode = request.getItemSpecCode();
+    this.quantity = request.getQuantity();
+    this.projectId = request.getProjectId();
     this.dueDate = request.getDueDate();
-    this.supplier = request.getSupplier();
-    this.receiver = request.getReceiver();
-    this.receiveSite = request.getReceiveSite();
-    this.receiveStation = request.getReceiveStation();
+    this.supplierId = request.getSupplierId();
+    this.receiverId = request.getReceiverId();
+    this.receiveSiteId = request.getReceiveSiteId();
+    this.receiveStationId = request.getReceiveStationId();
     this.remark = request.getRemark();
     this.status = PurchaseRequestStatusKind.DRAFT;
-    this.requester = request.getRequester();
+    this.requesterId = request.getRequesterId();
     this.code = request.getCodeGenerator().generate(this);
     return new PurchaseRequestMessages.Create.Response(
       Arrays.asList(new PurchaseRequestEvents.CreatedEvent(this.id))
@@ -100,13 +113,16 @@ public class PurchaseRequest implements Serializable {
     if (!isUpdatable()) {
       throw new PurchaseRequestExceptions.CannotUpdateException();
     }
-    this.name = request.getName();
-    this.project = request.getProject();
+    this.itemId = request.getItemId();
+    this.itemSpecId = request.getItemSpecId();
+    this.itemSpecCode = request.getItemSpecCode();
+    this.quantity = request.getQuantity();
+    this.projectId = request.getProjectId();
     this.dueDate = request.getDueDate();
-    this.supplier = request.getSupplier();
-    this.receiver = request.getReceiver();
-    this.receiveSite = request.getReceiveSite();
-    this.receiveStation = request.getReceiveStation();
+    this.supplierId = request.getSupplierId();
+    this.receiverId = request.getReceiverId();
+    this.receiveSiteId = request.getReceiveSiteId();
+    this.receiveStationId = request.getReceiveStationId();
     this.remark = request.getRemark();
     return new PurchaseRequestMessages.Update.Response(
       Arrays.asList(new PurchaseRequestEvents.UpdatedEvent(this.id))
@@ -119,7 +135,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotAcceptException();
     }
     this.status = PurchaseRequestStatusKind.ACCEPTED;
-    this.accepter = request.getAccepter();
+    this.accepterId = request.getAccepterId();
     this.acceptedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Accept.Response(
       Arrays.asList(new PurchaseRequestEvents.AcceptedEvent(this.id))
@@ -152,7 +168,7 @@ public class PurchaseRequest implements Serializable {
 
   public PurchaseRequestMessages.Commit.Response apply(
     PurchaseRequestMessages.Commit.Request request) {
-    if (!isCommittable() || !requester.equals(request.getCommitter())) {
+    if (!isCommittable() || !requesterId.equals(request.getCommitterId())) {
       throw new PurchaseRequestExceptions.CannotCommitException();
     }
     this.status = PurchaseRequestStatusKind.COMMITTED;

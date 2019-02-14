@@ -1,5 +1,6 @@
 package pico.erp.purchase.request;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
 import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecCode;
+import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
@@ -19,7 +22,13 @@ public class PurchaseRequestAwaitAcceptView {
 
   PurchaseRequestCode code;
 
-  String name;
+  ItemId itemId;
+
+  ItemSpecId itemSpecId;
+
+  ItemSpecCode itemSpecCode;
+
+  BigDecimal quantity;
 
   UserId requesterId;
 

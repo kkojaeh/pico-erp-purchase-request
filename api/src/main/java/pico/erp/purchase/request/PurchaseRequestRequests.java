@@ -1,8 +1,10 @@
 package pico.erp.purchase.request;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,6 +12,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
+import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecCode;
+import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.user.UserId;
@@ -28,9 +33,20 @@ public interface PurchaseRequestRequests {
     @NotNull
     PurchaseRequestId id;
 
-    @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+    @Valid
     @NotNull
-    String name;
+    ItemId itemId;
+
+    @Valid
+    ItemSpecId itemSpecId;
+
+    @Valid
+    @NotNull
+    ItemSpecCode itemSpecCode;
+
+    @NotNull
+    @Min(0)
+    BigDecimal quantity;
 
     @Valid
     @NotNull
@@ -73,9 +89,20 @@ public interface PurchaseRequestRequests {
     @NotNull
     PurchaseRequestId id;
 
-    @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+    @Valid
     @NotNull
-    String name;
+    ItemId itemId;
+
+    @Valid
+    ItemSpecId itemSpecId;
+
+    @Valid
+    @NotNull
+    ItemSpecCode itemSpecCode;
+
+    @NotNull
+    @Min(0)
+    BigDecimal quantity;
 
     @Valid
     @NotNull

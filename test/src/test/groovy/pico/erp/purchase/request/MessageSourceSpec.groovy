@@ -9,7 +9,6 @@ import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
-import pico.erp.purchase.request.item.PurchaseRequestItemStatusKind
 import pico.erp.shared.IntegrationConfiguration
 import spock.lang.Specification
 
@@ -41,19 +40,5 @@ class MessageSourceSpec extends Specification {
     then:
     messages.size() == 7
   }
-
-  def "구매요청 품목 상태"() {
-    when:
-    def messages = Stream.of(PurchaseRequestItemStatusKind.values())
-      .map({
-      kind -> messageSource.getMessage(kind.nameCode, null, locale)
-    }).collect(Collectors.toList())
-
-    println messages
-
-    then:
-    messages.size() == 8
-  }
-
 
 }

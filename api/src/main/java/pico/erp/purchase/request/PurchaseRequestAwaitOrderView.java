@@ -8,9 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.company.CompanyId;
 import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecCode;
 import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
-import pico.erp.purchase.request.item.PurchaseRequestItemId;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
@@ -18,13 +18,13 @@ import pico.erp.warehouse.location.station.StationId;
 @Data
 public class PurchaseRequestAwaitOrderView {
 
-  PurchaseRequestId requestId;
-
-  PurchaseRequestItemId requestItemId;
+  PurchaseRequestId id;
 
   ItemId itemId;
 
   ItemSpecId itemSpecId;
+
+  ItemSpecCode itemSpecCode;
 
   BigDecimal quantity;
 

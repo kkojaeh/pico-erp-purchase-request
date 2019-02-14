@@ -1,20 +1,25 @@
 package pico.erp.purchase.request;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.Value;
-import pico.erp.company.CompanyData;
-import pico.erp.project.ProjectData;
+import pico.erp.company.CompanyId;
+import pico.erp.item.ItemId;
+import pico.erp.item.spec.ItemSpecCode;
+import pico.erp.item.spec.ItemSpecId;
+import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.event.Event;
-import pico.erp.user.UserData;
-import pico.erp.warehouse.location.site.SiteData;
-import pico.erp.warehouse.location.station.StationData;
+import pico.erp.user.UserId;
+import pico.erp.warehouse.location.site.SiteId;
+import pico.erp.warehouse.location.station.StationId;
 
 public interface PurchaseRequestMessages {
 
@@ -27,34 +32,45 @@ public interface PurchaseRequestMessages {
       @NotNull
       PurchaseRequestId id;
 
-      @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+      @Valid
       @NotNull
-      String name;
+      ItemId itemId;
+
+      @Valid
+      ItemSpecId itemSpecId;
 
       @Valid
       @NotNull
-      ProjectData project;
+      ItemSpecCode itemSpecCode;
+
+      @NotNull
+      @Min(0)
+      BigDecimal quantity;
+
+      @Valid
+      @NotNull
+      ProjectId projectId;
 
       @Future
       @NotNull
       OffsetDateTime dueDate;
 
-      CompanyData supplier;
+      CompanyId supplierId;
 
       @NotNull
-      CompanyData receiver;
+      CompanyId receiverId;
 
       @Valid
-      SiteData receiveSite;
+      SiteId receiveSiteId;
 
       @Valid
-      StationData receiveStation;
+      StationId receiveStationId;
 
       @Size(max = TypeDefinitions.REMARK_LENGTH)
       String remark;
 
       @NotNull
-      UserData requester;
+      UserId requesterId;
 
       @NotNull
       PurchaseRequestCodeGenerator codeGenerator;
@@ -75,28 +91,39 @@ public interface PurchaseRequestMessages {
     @Data
     class Request {
 
-      @Size(min = 2, max = TypeDefinitions.NAME_LENGTH)
+      @Valid
       @NotNull
-      String name;
+      ItemId itemId;
+
+      @Valid
+      ItemSpecId itemSpecId;
 
       @Valid
       @NotNull
-      ProjectData project;
+      ItemSpecCode itemSpecCode;
+
+      @NotNull
+      @Min(0)
+      BigDecimal quantity;
+
+      @Valid
+      @NotNull
+      ProjectId projectId;
 
       @Future
       @NotNull
       OffsetDateTime dueDate;
 
-      CompanyData supplier;
+      CompanyId supplierId;
 
       @NotNull
-      CompanyData receiver;
+      CompanyId receiverId;
 
       @Valid
-      SiteData receiveSite;
+      SiteId receiveSiteId;
 
       @Valid
-      StationData receiveStation;
+      StationId receiveStationId;
 
       @Size(max = TypeDefinitions.REMARK_LENGTH)
       String remark;
@@ -118,7 +145,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      UserData accepter;
+      UserId accepterId;
 
     }
 
@@ -137,7 +164,7 @@ public interface PurchaseRequestMessages {
     class Request {
 
       @NotNull
-      UserData committer;
+      UserId committerId;
 
     }
 
