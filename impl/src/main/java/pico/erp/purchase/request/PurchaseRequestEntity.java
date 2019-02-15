@@ -34,6 +34,7 @@ import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
 import pico.erp.shared.data.Auditor;
+import pico.erp.shared.data.UnitKind;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
@@ -80,6 +81,10 @@ public class PurchaseRequestEntity implements Serializable {
 
   @Column(precision = 19, scale = 2)
   BigDecimal quantity;
+
+  @Column(length = TypeDefinitions.ENUM_LENGTH)
+  @Enumerated(EnumType.STRING)
+  UnitKind unit;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "PROJECT_ID", length = TypeDefinitions.UUID_BINARY_LENGTH))

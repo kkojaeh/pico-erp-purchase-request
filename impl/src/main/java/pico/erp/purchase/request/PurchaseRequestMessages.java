@@ -16,6 +16,7 @@ import pico.erp.item.spec.ItemSpecCode;
 import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
 import pico.erp.shared.TypeDefinitions;
+import pico.erp.shared.data.UnitKind;
 import pico.erp.shared.event.Event;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
@@ -46,6 +47,9 @@ public interface PurchaseRequestMessages {
       @NotNull
       @Min(0)
       BigDecimal quantity;
+
+      @NotNull
+      UnitKind unit;
 
       @Valid
       @NotNull
@@ -105,6 +109,9 @@ public interface PurchaseRequestMessages {
       @NotNull
       @Min(0)
       BigDecimal quantity;
+
+      @NotNull
+      UnitKind unit;
 
       @Valid
       @NotNull

@@ -18,6 +18,7 @@ import pico.erp.item.ItemId;
 import pico.erp.item.spec.ItemSpecCode;
 import pico.erp.item.spec.ItemSpecId;
 import pico.erp.project.ProjectId;
+import pico.erp.shared.data.UnitKind;
 import pico.erp.user.UserId;
 import pico.erp.warehouse.location.site.SiteId;
 import pico.erp.warehouse.location.station.StationId;
@@ -48,6 +49,8 @@ public class PurchaseRequest implements Serializable {
   ItemSpecCode itemSpecCode;
 
   BigDecimal quantity;
+
+  UnitKind unit;
 
   ProjectId projectId;
 
@@ -93,6 +96,7 @@ public class PurchaseRequest implements Serializable {
     this.itemSpecId = request.getItemSpecId();
     this.itemSpecCode = request.getItemSpecCode();
     this.quantity = request.getQuantity();
+    this.unit = request.getUnit();
     this.projectId = request.getProjectId();
     this.dueDate = request.getDueDate();
     this.supplierId = request.getSupplierId();
@@ -117,6 +121,7 @@ public class PurchaseRequest implements Serializable {
     this.itemSpecId = request.getItemSpecId();
     this.itemSpecCode = request.getItemSpecCode();
     this.quantity = request.getQuantity();
+    this.unit = request.getUnit();
     this.projectId = request.getProjectId();
     this.dueDate = request.getDueDate();
     this.supplierId = request.getSupplierId();

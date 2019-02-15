@@ -12,6 +12,7 @@ import pico.erp.item.ItemId
 import pico.erp.item.spec.ItemSpecCode
 import pico.erp.project.ProjectId
 import pico.erp.shared.IntegrationConfiguration
+import pico.erp.shared.data.UnitKind
 import pico.erp.user.UserId
 import pico.erp.warehouse.location.site.SiteId
 import pico.erp.warehouse.location.station.StationId
@@ -68,9 +69,7 @@ class PurchaseRequestServiceSpec extends Specification {
 
   def quantity = 100
 
-  def name = "테스트 구매요청"
-
-  def name2 = "테스트 구매요청2"
+  def unit = UnitKind.EA
 
   def setup() {
     requestService.create(
@@ -79,6 +78,7 @@ class PurchaseRequestServiceSpec extends Specification {
         itemId: itemId,
         itemSpecCode: itemSpecCode,
         quantity: quantity,
+        unit: unit,
         projectId: projectId,
         supplierId: supplierId,
         receiverId: receiverId,
@@ -157,6 +157,7 @@ class PurchaseRequestServiceSpec extends Specification {
         itemId: itemId,
         itemSpecCode: itemSpecCode,
         quantity: quantity,
+        unit: unit,
         projectId: projectId2,
         supplierId: supplierId,
         receiverId: receiverId2,
@@ -193,6 +194,7 @@ class PurchaseRequestServiceSpec extends Specification {
     request.itemId == itemId
     request.itemSpecCode == itemSpecCode
     request.quantity == quantity
+    request.unit == unit
     request.supplierId == supplierId
     request.receiverId == receiverId
     request.receiveSiteId == receiveSiteId
@@ -280,6 +282,7 @@ class PurchaseRequestServiceSpec extends Specification {
     request.itemId == itemId
     request.itemSpecCode == itemSpecCode
     request.quantity == quantity
+    request.unit == unit
     request.projectId == projectId2
     request.receiverId == receiverId2
     request.receiveStationId == receiveStationId2
