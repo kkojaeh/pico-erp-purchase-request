@@ -80,6 +80,24 @@ public interface PurchaseRequestRequests {
     @NotNull
     UserId requesterId;
 
+    public static CreateRequest from(PurchaseRequestData data) {
+      return CreateRequest.builder()
+        .id(data.getId())
+        .itemId(data.getItemId())
+        .itemSpecId(data.getItemSpecId())
+        .itemSpecCode(data.getItemSpecCode())
+        .quantity(data.getQuantity())
+        .unit(data.getUnit())
+        .projectId(data.getProjectId())
+        .dueDate(data.getDueDate())
+        .supplierId(data.getSupplierId())
+        .receiverId(data.getReceiverId())
+        .receiveSiteId(data.getReceiveSiteId())
+        .receiveStationId(data.getReceiveStationId())
+        .remark(data.getRemark())
+        .requesterId(data.getRequesterId())
+        .build();
+    }
 
   }
 
