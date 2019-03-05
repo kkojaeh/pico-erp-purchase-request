@@ -236,6 +236,10 @@ public interface PurchaseRequestRequests {
     @NotNull
     PurchaseRequestId id;
 
+    @NotNull
+    @Min(0)
+    BigDecimal progressedQuantity;
+
   }
 
   @Data

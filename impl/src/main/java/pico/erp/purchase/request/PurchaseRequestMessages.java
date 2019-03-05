@@ -239,6 +239,10 @@ public interface PurchaseRequestMessages {
     @Data
     class Request {
 
+      @NotNull
+      @Min(0)
+      BigDecimal progressedQuantity;
+
     }
 
     @Value

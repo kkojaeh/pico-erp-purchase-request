@@ -50,6 +50,8 @@ public class PurchaseRequest implements Serializable {
 
   BigDecimal quantity;
 
+  BigDecimal progressedQuantity;
+
   UnitKind unit;
 
   ProjectId projectId;
@@ -106,6 +108,7 @@ public class PurchaseRequest implements Serializable {
     this.remark = request.getRemark();
     this.status = PurchaseRequestStatusKind.DRAFT;
     this.requesterId = request.getRequesterId();
+    this.progressedQuantity = BigDecimal.ZERO;
     this.code = request.getCodeGenerator().generate(this);
     return new PurchaseRequestMessages.Create.Response(
       Arrays.asList(new PurchaseRequestEvents.CreatedEvent(this.id))
@@ -188,6 +191,7 @@ public class PurchaseRequest implements Serializable {
     if (!isProgressable()) {
       throw new PurchaseRequestExceptions.CannotProgressException();
     }
+    this.progressedQuantity = this.progressedQuantity.add(request.getProgressedQuantity());
     this.status = PurchaseRequestStatusKind.IN_PROGRESS;
     return new PurchaseRequestMessages.Progress.Response(
       Arrays.asList(new PurchaseRequestEvents.ProgressedEvent(this.id))

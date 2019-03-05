@@ -128,7 +128,8 @@ class PurchaseRequestServiceSpec extends Specification {
   def progressRequest() {
     requestService.progress(
       new PurchaseRequestRequests.ProgressRequest(
-        id: id
+        id: id,
+        progressedQuantity: 50
       )
     )
   }

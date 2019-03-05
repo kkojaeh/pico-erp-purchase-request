@@ -34,6 +34,8 @@ public class PurchaseRequestData {
 
   BigDecimal quantity;
 
+  BigDecimal progressedQuantity;
+
   UnitKind unit;
 
   UserId requesterId;

@@ -94,6 +94,7 @@ public abstract class PurchaseRequestMapper {
       .itemSpecId(entity.getItemSpecId())
       .itemSpecCode(entity.getItemSpecCode())
       .quantity(entity.getQuantity())
+      .progressedQuantity(entity.getProgressedQuantity())
       .unit(entity.getUnit())
       .projectId(entity.getProjectId())
       .dueDate(entity.getDueDate())

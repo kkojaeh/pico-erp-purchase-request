@@ -32,6 +32,8 @@ public class PurchaseRequestView {
 
   BigDecimal quantity;
 
+  BigDecimal progressedQuantity;
+
   UnitKind unit;
 
   UserId requesterId;

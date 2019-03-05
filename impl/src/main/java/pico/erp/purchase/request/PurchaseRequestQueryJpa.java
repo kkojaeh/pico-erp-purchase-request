@@ -43,6 +43,7 @@ public class PurchaseRequestQueryJpa implements PurchaseRequestQuery {
       request.itemSpecId,
       request.itemSpecCode,
       request.quantity,
+      request.progressedQuantity,
       request.unit,
       request.requesterId,
       request.accepterId,
