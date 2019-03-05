@@ -194,7 +194,8 @@ public class PurchaseRequest implements Serializable {
     this.progressedQuantity = this.progressedQuantity.add(request.getProgressedQuantity());
     this.status = PurchaseRequestStatusKind.IN_PROGRESS;
     return new PurchaseRequestMessages.Progress.Response(
-      Arrays.asList(new PurchaseRequestEvents.ProgressedEvent(this.id))
+      Arrays
+        .asList(new PurchaseRequestEvents.ProgressedEvent(this.id, request.getProgressedQuantity()))
     );
   }
 

@@ -1,5 +1,6 @@
 package pico.erp.purchase.request;
 
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,8 @@ public interface PurchaseRequestEvents {
     public final static String CHANNEL = "event.purchase-request.progressed";
 
     private PurchaseRequestId id;
+
+    private BigDecimal progressedQuantity;
 
     public String channel() {
       return CHANNEL;
