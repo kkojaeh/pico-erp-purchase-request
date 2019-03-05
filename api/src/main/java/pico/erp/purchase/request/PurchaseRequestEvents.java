@@ -32,7 +32,7 @@ public interface PurchaseRequestEvents {
 
     private PurchaseRequestId id;
 
-    private BigDecimal progressedQuantity;
+    private BigDecimal quantity;
 
     public String channel() {
       return CHANNEL;
