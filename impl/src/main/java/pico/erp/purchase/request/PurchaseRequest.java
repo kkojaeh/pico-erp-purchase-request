@@ -2,7 +2,7 @@ package pico.erp.purchase.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import javax.persistence.Id;
 import lombok.AccessLevel;
@@ -12,7 +12,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import pico.erp.audit.annotation.Audit;
 import pico.erp.company.CompanyId;
 import pico.erp.item.ItemId;
 import pico.erp.item.spec.ItemSpecCode;
@@ -32,7 +31,6 @@ import pico.erp.warehouse.location.station.StationId;
 @EqualsAndHashCode(of = "id")
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Audit(alias = "purchase-request")
 public class PurchaseRequest implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -56,7 +54,7 @@ public class PurchaseRequest implements Serializable {
 
   ProjectId projectId;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   CompanyId supplierId;
 
@@ -72,15 +70,15 @@ public class PurchaseRequest implements Serializable {
 
   UserId accepterId;
 
-  OffsetDateTime committedDate;
+  LocalDateTime committedDate;
 
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
-  OffsetDateTime completedDate;
+  LocalDateTime completedDate;
 
-  OffsetDateTime rejectedDate;
+  LocalDateTime rejectedDate;
 
-  OffsetDateTime canceledDate;
+  LocalDateTime canceledDate;
 
   PurchaseRequestStatusKind status;
 
@@ -144,7 +142,7 @@ public class PurchaseRequest implements Serializable {
     }
     this.status = PurchaseRequestStatusKind.ACCEPTED;
     this.accepterId = request.getAccepterId();
-    this.acceptedDate = OffsetDateTime.now();
+    this.acceptedDate = LocalDateTime.now();
     return new PurchaseRequestMessages.Accept.Response(
       Arrays.asList(new PurchaseRequestEvents.AcceptedEvent(this.id))
     );
@@ -156,7 +154,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCancelException();
     }
     this.status = PurchaseRequestStatusKind.CANCELED;
-    this.canceledDate = OffsetDateTime.now();
+    this.canceledDate = LocalDateTime.now();
     return new PurchaseRequestMessages.Cancel.Response(
       Arrays.asList(new PurchaseRequestEvents.CanceledEvent(this.id))
     );
@@ -168,7 +166,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCompleteException();
     }
     this.status = PurchaseRequestStatusKind.COMPLETED;
-    this.completedDate = OffsetDateTime.now();
+    this.completedDate = LocalDateTime.now();
     return new PurchaseRequestMessages.Complete.Response(
       Arrays.asList(new PurchaseRequestEvents.CompletedEvent(this.id))
     );
@@ -180,7 +178,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCommitException();
     }
     this.status = PurchaseRequestStatusKind.COMMITTED;
-    this.committedDate = OffsetDateTime.now();
+    this.committedDate = LocalDateTime.now();
     return new PurchaseRequestMessages.Commit.Response(
       Arrays.asList(new PurchaseRequestEvents.CommittedEvent(this.id))
     );
@@ -205,7 +203,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotRejectException();
     }
     this.status = PurchaseRequestStatusKind.REJECTED;
-    this.rejectedDate = OffsetDateTime.now();
+    this.rejectedDate = LocalDateTime.now();
     this.rejectedReason = request.getRejectedReason();
     return new PurchaseRequestMessages.Reject.Response(
       Arrays.asList(new PurchaseRequestEvents.RejectedEvent(this.id))

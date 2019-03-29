@@ -1,7 +1,7 @@
 package pico.erp.purchase.request;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.OffsetDateTime;
 import java.time.temporal.TemporalAdjusters;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class PurchaseRequestCodeGeneratorImpl implements PurchaseRequestCodeGene
 
   @Override
   public PurchaseRequestCode generate(PurchaseRequest purchaseRequest) {
-    val now = OffsetDateTime.now();
+    val now = LocalDateTime.now();
     val begin = now.with(TemporalAdjusters.firstDayOfMonth()).with(LocalTime.MIN);
     val end = now.with(TemporalAdjusters.lastDayOfMonth()).with(LocalTime.MAX);
     val count = purchaseRequestRepository.countCreatedBetween(begin, end);
