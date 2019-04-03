@@ -1,16 +1,18 @@
 package pico.erp.purchase.request;
 
+import kkojaeh.spring.boot.component.SpringBootComponentReadyEvent;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import pico.erp.shared.ApplicationInitializer;
 import pico.erp.user.group.GroupRequests;
 import pico.erp.user.group.GroupService;
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Configuration
-public class PurchaseRequestInitializer implements ApplicationInitializer {
+public class PurchaseRequestInitializer implements
+  ApplicationListener<SpringBootComponentReadyEvent> {
 
   @Lazy
   @Autowired
@@ -20,7 +22,7 @@ public class PurchaseRequestInitializer implements ApplicationInitializer {
   PurchaseRequestProperties properties;
 
   @Override
-  public void initialize() {
+  public void onApplicationEvent(SpringBootComponentReadyEvent event) {
     val accepterGroup = properties.getAccepterGroup();
     if (!groupService.exists(accepterGroup.getId())) {
       groupService.create(

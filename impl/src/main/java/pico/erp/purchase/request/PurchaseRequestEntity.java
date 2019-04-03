@@ -3,7 +3,7 @@ package pico.erp.purchase.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -97,7 +97,7 @@ public class PurchaseRequestEntity implements Serializable {
   })
   ProjectId projectId;
 
-  OffsetDateTime dueDate;
+  LocalDateTime dueDate;
 
   @AttributeOverrides({
     @AttributeOverride(name = "value", column = @Column(name = "SUPPLIER_ID", length = TypeDefinitions.ID_LENGTH))
@@ -137,15 +137,15 @@ public class PurchaseRequestEntity implements Serializable {
   })
   UserId accepterId;
 
-  OffsetDateTime committedDate;
+  LocalDateTime committedDate;
 
-  OffsetDateTime acceptedDate;
+  LocalDateTime acceptedDate;
 
-  OffsetDateTime completedDate;
+  LocalDateTime completedDate;
 
-  OffsetDateTime rejectedDate;
+  LocalDateTime rejectedDate;
 
-  OffsetDateTime canceledDate;
+  LocalDateTime canceledDate;
 
   @Column(length = TypeDefinitions.ENUM_LENGTH)
   @Enumerated(EnumType.STRING)
@@ -161,7 +161,7 @@ public class PurchaseRequestEntity implements Serializable {
 
   @CreatedDate
   @Column(updatable = false)
-  OffsetDateTime createdDate;
+  LocalDateTime createdDate;
 
   @Embedded
   @AttributeOverrides({
@@ -172,6 +172,6 @@ public class PurchaseRequestEntity implements Serializable {
   Auditor lastModifiedBy;
 
   @LastModifiedDate
-  OffsetDateTime lastModifiedDate;
+  LocalDateTime lastModifiedDate;
 
 }

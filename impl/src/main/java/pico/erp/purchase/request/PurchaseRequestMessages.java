@@ -1,7 +1,7 @@
 package pico.erp.purchase.request;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
@@ -57,7 +57,7 @@ public interface PurchaseRequestMessages {
 
       @Future
       @NotNull
-      OffsetDateTime dueDate;
+      LocalDateTime dueDate;
 
       CompanyId supplierId;
 
@@ -119,7 +119,7 @@ public interface PurchaseRequestMessages {
 
       @Future
       @NotNull
-      OffsetDateTime dueDate;
+      LocalDateTime dueDate;
 
       CompanyId supplierId;
 

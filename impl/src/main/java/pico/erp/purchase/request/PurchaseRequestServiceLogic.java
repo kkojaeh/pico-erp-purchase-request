@@ -1,12 +1,11 @@
 package pico.erp.purchase.request;
 
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import pico.erp.audit.AuditService;
 import pico.erp.purchase.request.PurchaseRequestRequests.AcceptRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CancelProgressRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.CancelRequest;
@@ -15,12 +14,11 @@ import pico.erp.purchase.request.PurchaseRequestRequests.CompleteRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.PlanRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.ProgressRequest;
 import pico.erp.purchase.request.PurchaseRequestRequests.RejectRequest;
-import pico.erp.shared.Public;
 import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Public
+@ComponentBean
 @Transactional
 @Validated
 public class PurchaseRequestServiceLogic implements PurchaseRequestService {
@@ -34,17 +32,12 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
   @Autowired
   private PurchaseRequestMapper mapper;
 
-  @Lazy
-  @Autowired
-  private AuditService auditService;
-
   @Override
   public void accept(AcceptRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -54,7 +47,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -64,7 +56,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -74,7 +65,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -86,7 +76,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       throw new PurchaseRequestExceptions.AlreadyExistsException();
     }
     val created = purchaseRequestRepository.create(purchaseRequest);
-    auditService.commit(created);
     eventPublisher.publishEvents(response.getEvents());
     return mapper.map(created);
   }
@@ -109,7 +98,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -119,7 +107,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -129,7 +116,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -139,7 +125,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 
@@ -149,7 +134,6 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));
     purchaseRequestRepository.update(purchaseRequest);
-    auditService.commit(purchaseRequest);
     eventPublisher.publishEvents(response.getEvents());
   }
 }
