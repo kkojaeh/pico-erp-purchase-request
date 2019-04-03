@@ -1,7 +1,7 @@
 package pico.erp.purchase.request;
 
 import java.util.Optional;
-import kkojaeh.spring.boot.component.Take;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -38,32 +38,32 @@ public abstract class PurchaseRequestMapper {
   @Autowired
   protected AuditorAware<Auditor> auditorAware;
 
-  @Take
+  @ComponentAutowired
   protected ItemService itemService;
 
-  @Take
+  @ComponentAutowired
   protected ItemSpecService itemSpecService;
 
   @Autowired
   protected PurchaseRequestCodeGenerator purchaseRequestCodeGenerator;
 
-  @Take
+  @ComponentAutowired
   private CompanyService companyService;
 
-  @Take
+  @ComponentAutowired
   private UserService userService;
 
   @Lazy
   @Autowired
   private PurchaseRequestRepository purchaseRequestRepository;
 
-  @Take
+  @ComponentAutowired
   private ProjectService projectService;
 
-  @Take
+  @ComponentAutowired
   private SiteService siteService;
 
-  @Take
+  @ComponentAutowired
   private StationService stationService;
 
   protected Auditor auditor(UserId userId) {
