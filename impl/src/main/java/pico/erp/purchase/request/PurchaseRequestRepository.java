@@ -1,6 +1,6 @@
 package pico.erp.purchase.request;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PurchaseRequestRepository {
 
-  long countCreatedBetween(LocalDateTime begin, LocalDateTime end);
+  long countCreatedBetween(OffsetDateTime begin, OffsetDateTime end);
 
   PurchaseRequest create(@NotNull PurchaseRequest orderAcceptance);
 

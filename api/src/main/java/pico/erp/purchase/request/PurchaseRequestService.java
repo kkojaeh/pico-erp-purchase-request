@@ -9,6 +9,8 @@ public interface PurchaseRequestService {
 
   void cancel(@Valid @NotNull PurchaseRequestRequests.CancelRequest request);
 
+  void cancelProgress(@Valid @NotNull PurchaseRequestRequests.CancelProgressRequest request);
+
   void commit(@Valid @NotNull PurchaseRequestRequests.CommitRequest request);
 
   void complete(@Valid @NotNull PurchaseRequestRequests.CompleteRequest request);
@@ -23,10 +25,8 @@ public interface PurchaseRequestService {
 
   void progress(@Valid @NotNull PurchaseRequestRequests.ProgressRequest request);
 
-  void update(@Valid @NotNull PurchaseRequestRequests.UpdateRequest request);
-
   void reject(@Valid @NotNull PurchaseRequestRequests.RejectRequest request);
 
-  void cancelProgress(@Valid @NotNull PurchaseRequestRequests.CancelProgressRequest request);
+  void update(@Valid @NotNull PurchaseRequestRequests.UpdateRequest request);
 
 }

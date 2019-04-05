@@ -66,6 +66,10 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
     return this == ACCEPTED;
   }
 
+  public boolean isProgressCancelable() {
+    return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
+  }
+
   public boolean isProgressable() {
     return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
   }
@@ -76,9 +80,5 @@ public enum PurchaseRequestStatusKind implements LocalizedNameable {
 
   public boolean isUpdatable() {
     return this == DRAFT;
-  }
-
-  public boolean isProgressCancelable() {
-    return Arrays.asList(IN_PLANNING, IN_PROGRESS).contains(this);
   }
 }

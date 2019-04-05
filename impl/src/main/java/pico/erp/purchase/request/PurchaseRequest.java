@@ -2,7 +2,7 @@ package pico.erp.purchase.request;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import javax.persistence.Id;
 import lombok.AccessLevel;
@@ -54,7 +54,7 @@ public class PurchaseRequest implements Serializable {
 
   ProjectId projectId;
 
-  LocalDateTime dueDate;
+  OffsetDateTime dueDate;
 
   CompanyId supplierId;
 
@@ -70,15 +70,15 @@ public class PurchaseRequest implements Serializable {
 
   UserId accepterId;
 
-  LocalDateTime committedDate;
+  OffsetDateTime committedDate;
 
-  LocalDateTime acceptedDate;
+  OffsetDateTime acceptedDate;
 
-  LocalDateTime completedDate;
+  OffsetDateTime completedDate;
 
-  LocalDateTime rejectedDate;
+  OffsetDateTime rejectedDate;
 
-  LocalDateTime canceledDate;
+  OffsetDateTime canceledDate;
 
   PurchaseRequestStatusKind status;
 
@@ -142,7 +142,7 @@ public class PurchaseRequest implements Serializable {
     }
     this.status = PurchaseRequestStatusKind.ACCEPTED;
     this.accepterId = request.getAccepterId();
-    this.acceptedDate = LocalDateTime.now();
+    this.acceptedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Accept.Response(
       Arrays.asList(new PurchaseRequestEvents.AcceptedEvent(this.id))
     );
@@ -154,7 +154,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCancelException();
     }
     this.status = PurchaseRequestStatusKind.CANCELED;
-    this.canceledDate = LocalDateTime.now();
+    this.canceledDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Cancel.Response(
       Arrays.asList(new PurchaseRequestEvents.CanceledEvent(this.id))
     );
@@ -166,7 +166,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCompleteException();
     }
     this.status = PurchaseRequestStatusKind.COMPLETED;
-    this.completedDate = LocalDateTime.now();
+    this.completedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Complete.Response(
       Arrays.asList(new PurchaseRequestEvents.CompletedEvent(this.id))
     );
@@ -178,7 +178,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotCommitException();
     }
     this.status = PurchaseRequestStatusKind.COMMITTED;
-    this.committedDate = LocalDateTime.now();
+    this.committedDate = OffsetDateTime.now();
     return new PurchaseRequestMessages.Commit.Response(
       Arrays.asList(new PurchaseRequestEvents.CommittedEvent(this.id))
     );
@@ -203,7 +203,7 @@ public class PurchaseRequest implements Serializable {
       throw new PurchaseRequestExceptions.CannotRejectException();
     }
     this.status = PurchaseRequestStatusKind.REJECTED;
-    this.rejectedDate = LocalDateTime.now();
+    this.rejectedDate = OffsetDateTime.now();
     this.rejectedReason = request.getRejectedReason();
     return new PurchaseRequestMessages.Reject.Response(
       Arrays.asList(new PurchaseRequestEvents.RejectedEvent(this.id))
@@ -240,10 +240,6 @@ public class PurchaseRequest implements Serializable {
     return status.isCancelable();
   }
 
-  public boolean isProgressCancelable() {
-    return status.isProgressCancelable();
-  }
-
   public boolean isCommittable() {
     return status.isCommittable();
   }
@@ -254,6 +250,10 @@ public class PurchaseRequest implements Serializable {
 
   public boolean isPlannable() {
     return status.isPlannable();
+  }
+
+  public boolean isProgressCancelable() {
+    return status.isProgressCancelable();
   }
 
   public boolean isProgressable() {

@@ -1,7 +1,7 @@
 package pico.erp.purchase.request;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,9 +45,9 @@ public class PurchaseRequestAwaitAcceptView {
 
   StationId receiveStationId;
 
-  LocalDateTime committedDate;
+  OffsetDateTime committedDate;
 
-  LocalDateTime dueDate;
+  OffsetDateTime dueDate;
 
   @Data
   @NoArgsConstructor
@@ -65,9 +65,9 @@ public class PurchaseRequestAwaitAcceptView {
 
     ItemId itemId;
 
-    LocalDateTime startDueDate;
+    OffsetDateTime startDueDate;
 
-    LocalDateTime endDueDate;
+    OffsetDateTime endDueDate;
 
   }
 

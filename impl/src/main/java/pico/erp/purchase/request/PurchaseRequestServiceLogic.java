@@ -51,6 +51,15 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
   }
 
   @Override
+  public void cancelProgress(CancelProgressRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
   public void commit(CommitRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
@@ -102,25 +111,16 @@ public class PurchaseRequestServiceLogic implements PurchaseRequestService {
   }
 
   @Override
-  public void reject(RejectRequest request) {
-    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
-      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
-    val response = purchaseRequest.apply(mapper.map(request));
-    purchaseRequestRepository.update(purchaseRequest);
-    eventPublisher.publishEvents(response.getEvents());
-  }
-
-  @Override
-  public void cancelProgress(CancelProgressRequest request) {
-    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
-      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
-    val response = purchaseRequest.apply(mapper.map(request));
-    purchaseRequestRepository.update(purchaseRequest);
-    eventPublisher.publishEvents(response.getEvents());
-  }
-
-  @Override
   public void progress(ProgressRequest request) {
+    val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
+      .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
+    val response = purchaseRequest.apply(mapper.map(request));
+    purchaseRequestRepository.update(purchaseRequest);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void reject(RejectRequest request) {
     val purchaseRequest = purchaseRequestRepository.findBy(request.getId())
       .orElseThrow(PurchaseRequestExceptions.NotFoundException::new);
     val response = purchaseRequest.apply(mapper.map(request));

@@ -1,7 +1,7 @@
 package pico.erp.purchase.request;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,17 +50,17 @@ public class PurchaseRequestView {
 
   StationId receiveStationId;
 
-  LocalDateTime dueDate;
+  OffsetDateTime dueDate;
 
-  LocalDateTime committedDate;
+  OffsetDateTime committedDate;
 
-  LocalDateTime completedDate;
+  OffsetDateTime completedDate;
 
-  LocalDateTime acceptedDate;
+  OffsetDateTime acceptedDate;
 
-  LocalDateTime rejectedDate;
+  OffsetDateTime rejectedDate;
 
-  LocalDateTime canceledDate;
+  OffsetDateTime canceledDate;
 
   PurchaseRequestStatusKind status;
 
@@ -84,9 +84,9 @@ public class PurchaseRequestView {
 
     Set<PurchaseRequestStatusKind> statuses;
 
-    LocalDateTime startDueDate;
+    OffsetDateTime startDueDate;
 
-    LocalDateTime endDueDate;
+    OffsetDateTime endDueDate;
 
   }
 
